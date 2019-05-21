@@ -15,6 +15,10 @@ class DataModel with ChangeNotifier{
   //   notifyListeners();
   // }
 
+  initList(){
+    pat._abgList =[];
+  }
+
 }
 
 class PatientDataType{

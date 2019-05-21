@@ -198,6 +198,7 @@ getAbnAbgListfrom({age,ph,co2,bi,na,cl,alb,pao,spo,sao,fio}){
   var v1 = cag - 12;
   var v2 = 24 - bi;
   var delta = v1/v2;
+  delta = delta.abs();
   print("Del:$delta");
 
 // if (cag>11){
@@ -218,10 +219,7 @@ getAbnAbgListfrom({age,ph,co2,bi,na,cl,alb,pao,spo,sao,fio}){
 // }  
 
 if(cag>11){
-  if(delta <0.4){
-    if(!abg1.contains("NAGMA")){abg1.add("NAGMA");}
-  }
-  else if(delta >= 0.4 && delta<=0.79){
+    if(delta<=0.79){
     if(!abg1.contains("NAGMA")){abg1.add("NAGMA");}
     if(!abg1.contains("HAGMA") ){abg1.add("HAGMA");}
   }else if (delta>=0.8 && delta<2.0){
@@ -248,7 +246,9 @@ if(cag>11){
      if(co2>=35 && co2<=45){
        if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
      }else if (co2<35){
-       if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+       var expco2 = 1.5*bi + 8;
+       var co_diff = expco2-co2;
+       if(!abg1.contains("RespAlk") && co_diff.abs()>2 ){abg1.add("RespAlk");}
        if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
 
      }else{
@@ -263,18 +263,22 @@ if(cag>11){
       if(co2>=35 && co2<=45){
         if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
       }else if (co2>45){
+        var expco2 = 0.7*bi +20;
+        double co_diff = co2-expco2;
         if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
-        if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+        if(!abg1.contains("RespAcid") && co_diff.abs()>5){abg1.add("RespAcid");}
       }else{
         
       }
    }
 
   //RespAcid
-  else if (ph>=7.35 && co2>45){
+  else if (ph<=7.35 && co2>45){
    if(bi>26){
+      var expbi = 24+((co2-40)/10);
+      print("ex:$expbi, ac:$bi");
       if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
-      // if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}//part Compenst
+      if(!abg1.contains("MetabAlk") && bi !=expbi){abg1.add("MetabAlk");}//part Compenst
    }else if (bi>=22 && bi<=26){
      if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
    }else{
@@ -288,7 +292,10 @@ if(cag>11){
     if(bi>=22 && bi<=26){
        if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
     }else if (bi<22){
-      if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+      var expbi = 24-2*((40-co2)/10);
+      if(!abg1.contains("RespAlk") ){abg1.add("RespAlk");}
+     
+      if(!abg1.contains("NAGMA") && bi!=expbi){abg1.add("NAGMA");}
     }else{
       if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
       if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
@@ -336,6 +343,12 @@ class SecondScreen extends StatelessWidget {
       // body: Text('${a.length}'),
       // body:Text(datamodel.pat.getAge().toString()),
       body: Center(child: Text(datamodel.pat.getAbgList().toString())),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          datamodel.initList();
+          Navigator.pop(context);
+        },
+      ),
       
     );
   }
