@@ -204,8 +204,59 @@ if (cag>11){
 
   //if ph is between 7.35-7.45 and co2 is between 35-45 and bi 22-26 
   // Normal 
+  if (ph>=7.35 && ph <=7.45 && co2>=35 && co2<=45 && bi>=22 && bi<=26){
+    if (abg1.length == 0){
+      abg1.add("Normal");
+    }
+  }
   
-  //if ph < 7.35 and co2 >45
+ 
+  
+   //NAGMA
+   else if (ph<7.35 && bi<22){
+     if(co2>=35 && co2<=45){
+       if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
+     }else if (co2<35){
+       if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+       if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
+
+     }else{
+        if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+       if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
+
+     }
+   }
+
+   //MetabAlk
+   else if (ph>7.45 && bi>26){
+      if(co2>=35 && co2<=45){
+        if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
+      }else if (co2>45){
+        if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
+        if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+      }else{
+        
+      }
+   }
+
+  //RespAcid
+  else if (ph>=7.35 && co2>45){
+   if(bi>26){
+      if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+      // if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}//part Compenst
+   }else if (bi>=22 && bi<=26){
+     if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+   }else{
+     if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+    //  if(!abg1.contains("MetabAcid")){abg1.add("MetabAcid");}//Combined acid
+   }
+  }
+
+  //RespAlk
+  
+
+  
+   //if ph < 7.35 and co2 >45
         //if bi >26
         //RespAcid
         //Metabalk?
@@ -215,7 +266,6 @@ if (cag>11){
 
         //else 
           //someway this beocmes NAGMA?
-
   //if ph >7.45 and bi >26
         // if co2 is 35-45
         //Metabalk
