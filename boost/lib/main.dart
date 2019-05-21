@@ -59,8 +59,7 @@ class Home extends StatelessWidget {
                         leading: CircleAvatar(child: Text('ph'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'Arterial Ph'),
-                            // onChanged: (v)=>datamodel.addValuetoData(double.tryParse(v)),
-                            onChanged: (v)=>datamodel.pat.setAge(double.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setPh(double.tryParse(v)),
                             ),  
                       ),
                       ListTile(
@@ -68,7 +67,6 @@ class Home extends StatelessWidget {
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'CO2'),
                              onChanged: (v)=>datamodel.pat.setPh(double.tryParse(v)),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
                             ),   
                       ),
                    
