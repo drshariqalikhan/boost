@@ -1,103 +1,203 @@
+
+import 'package:boost/AbnAbgPages/Hagma.dart';
+import 'package:boost/AbnAbgPages/HighAa.dart';
+import 'package:boost/AbnAbgPages/Nagma.dart';
+import 'package:boost/AbnAbgPages/NormalAa.dart';
+import 'package:boost/AbnAbgPages/RespAcid.dart';
+import 'package:boost/AbnAbgPages/RespAlk.dart';
+import 'package:boost/logic/datamodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-       
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return ChangeNotifierProvider<DataModel>(
+      builder: (_)=>DataModel(),
+          child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+         
+          primarySwatch: Colors.blue,
+        ),
+        home:  Home(),
+          
+        routes: {
+            '/sec':(context)=>SecondScreen(),
+            '/Hagma':(context)=>Hagma(),
+            '/Nagma':(context)=>Nagma(),
+            '/RespAlk':(context)=>RespAlk(),
+            '/RespAcid':(context)=>RespAcid(),
+            '/HighAa':(context)=>HighAa(),
+            '/NormalAa':(context)=>NormalAa(),
+          }
+          ),
+          );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final datamodel = Provider.of<DataModel>(context);
+    return  Container(
+
+      child: Scaffold(
+        appBar: AppBar(),
+        body:Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child:Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                      ListTile(
+                        leading: CircleAvatar(child: Text('ph'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'Arterial Ph'),
+                            // onChanged: (v)=>datamodel.addValuetoData(double.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setAge(double.tryParse(v)),
+                            ),  
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(child: Text('CO2'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'CO2'),
+                             onChanged: (v)=>datamodel.pat.setPh(double.tryParse(v)),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ),
+                   
+                      ListTile(
+                        leading: CircleAvatar(child: Text('Bi'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'bi'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('na'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'na'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('cl'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'cl'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('alb'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'alb'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('pao'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'pao'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('spo'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'spo'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('sao'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'sao'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('fio'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'fio'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ),
+                       ListTile(
+                        leading: CircleAvatar(child: Text('age'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'age'),
+                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            ),   
+                      ),  
+                   
+                  ],
+                ),
+            ),
+          ),
+        
+          floatingActionButton: FloatingActionButton(
+
+            child: Icon(Icons.arrow_forward),
+            onPressed: (){
+              print('ph:${datamodel.pat.getPh().toString()} age:${datamodel.pat.getAge().toString()}');
+              
+              
+              if(datamodel.pat.getPh()!=null){
+              var ab = getAbgFromData(datamodel.pat.getPh(),datamodel.pat.getAge());
+              List valList = getAbnAbgListfrom(datamodel.pat.getPh());
+              // datamodel.pat.setAbgList(valList);
+              datamodel.pat.setAbgList(valList);
+              // var nv = datamodel.pat.getAbgList()[3].toString();  
+                print('next');
+                    Navigator.pushNamed(context, '/sec');
+                    // Navigator.pushNamed(context, '/$nv');
+
+              }
+            },
+          ),
+        
+      ),
+            
+         
+        
+      );
+  }
+}
+
+
+
+ getAbgFromData(ph,age){
+    return ph+age;
+}
+
+getAbnAbgListfrom(ph){
+  List<String> outlist =[];
+  if(ph>=7.35 && ph<=7.55){
+    outlist.add("$ph");
+  }
+  
+  return outlist;
+}
+
+
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+     final datamodel = Provider.of<DataModel>(context);
+     List a = datamodel.pat.getAbgList();
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      appBar: AppBar(title: TextField(onChanged: (v){datamodel.pat.setAge(double.tryParse(v));},),),
+      // body: Text('${a.length}'),
+      // body:Text(datamodel.pat.getAge().toString()),
+      body: Text(datamodel.pat.getAbgList().toString()),
+      
     );
   }
 }
+
