@@ -149,8 +149,22 @@ class Home extends StatelessWidget {
               if(datamodel.pat.getPh()!=null){
               // var ab = getAbgFromData(datamodel.pat.getPh(),datamodel.pat.getAge());
               // List valList = getAbnAbgListfrom(datamodel.pat.getPh());
+              List valList = getAbnAbgListfrom(
+                age: datamodel.pat.getAge(),
+                alb: datamodel.pat.getAlb(),
+                bi: datamodel.pat.getBi(),
+                cl: datamodel.pat.getCl(),
+                co2: datamodel.pat.getCo2(),
+                fio: datamodel.pat.getFio(),
+                na: datamodel.pat.getNa(),
+                pao: datamodel.pat.getPao(),
+                ph: datamodel.pat.getPh(),
+                sao: datamodel.pat.getSao(),
+                spo: datamodel.pat.getSpo()
+
+              );
               // datamodel.pat.setAbgList(valList);
-              // datamodel.pat.setAbgList(valList);
+              datamodel.pat.setAbgList(valList);
               // var nv = datamodel.pat.getAbgList()[3].toString();  
                 print('next');
                     Navigator.pushNamed(context, '/sec');
@@ -174,33 +188,50 @@ class Home extends StatelessWidget {
     return ph+age;
 }
 
-getAbnAbgListfrom(age,ph,co2,bi,na,cl,alb,pao,spo,sao,fio){
+getAbnAbgListfrom({age,ph,co2,bi,na,cl,alb,pao,spo,sao,fio}){
   List<String> outlist =[];
   List<String> abg1 = [];
 
   //Calc anion gap
   var cag = na - (cl+bi) + 2.5*(4-alb);
+  print("cag:$cag");
   var v1 = cag - 12;
   var v2 = 24 - bi;
   var delta = v1/v2;
+  print("Del:$delta");
 
-if (cag>11){
-  if(delta > 2){
-    abg1.add("HAGMA");
-    abg1.add("MetabAlk");
-  }else if (delta >= 8 && delta <=20.1){
-    abg1.add("HAGMA");
-  }else if (delta >= 4 && delta <=9){
-    abg1.add("HAGMA");
-    abg1.add("NAGMA");
-  }else if (delta<0){
-    abg1.add("HAGMA");
-    abg1.add("MetabAlk");
-  }else{
-    abg1.add("NAGMA");
+// if (cag>11){
+//   if(delta > 2){
+//     abg1.add("HAGMA");
+//     abg1.add("MetabAlk");
+//   }else if (delta >= 0.8 && delta <=2){
+//     abg1.add("HAGMA");
+//   }else if (delta >= 0.4 && delta <0.8){
+//     abg1.add("HAGMA");
+//     abg1.add("NAGMA");
+//   }else if (delta<0){
+//     abg1.add("HAGMA");
+//     abg1.add("MetabAlk");
+//   }else{
+//     abg1.add("NAGMA");
+//   }
+// }  
+
+if(cag>11){
+  if(delta <0.4){
+    if(!abg1.contains("NAGMA")){abg1.add("NAGMA");}
   }
-}  
+  else if(delta >= 0.4 && delta<=0.79){
+    if(!abg1.contains("NAGMA")){abg1.add("NAGMA");}
+    if(!abg1.contains("HAGMA") ){abg1.add("HAGMA");}
+  }else if (delta>=0.8 && delta<2.0){
+    if(!abg1.contains("HAGMA") ){abg1.add("HAGMA");}
+  }else{
+    if(!abg1.contains("HAGMA") ){abg1.add("HAGMA");}
+    if(!abg1.contains("MetabAlk") ){abg1.add("MetabAlk");}
 
+  }
+}
 
   //if ph is between 7.35-7.45 and co2 is between 35-45 and bi 22-26 
   // Normal 
@@ -253,61 +284,45 @@ if (cag>11){
   }
 
   //RespAlk
-  
+  else if(ph>7.45 && co2<35){
+    if(bi>=22 && bi<=26){
+       if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+    }else if (bi<22){
+      if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+    }else{
+      if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+      if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
+    }
+  }
 
-  
-   //if ph < 7.35 and co2 >45
-        //if bi >26
-        //RespAcid
-        //Metabalk?
+  //Compensated Abg
+  //MetabAcid
+  else if(ph>=7.35 && ph<=7.39 && bi<22 && co2<35){
+    if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+    //?NAGMA
+  }
+  else if(ph>=7.35 && ph<=7.39 && bi>22 && co2>45){
+    
+     if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+      if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
+  }
+  else if(ph>=7.40 && ph<=7.45 && bi>26 && co2>35){
+    
+     if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
+      if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
+  }
+  else if(ph>=7.40 && ph<=7.45 && bi>22 && co2<35){
+    
+     if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
+     
+  }
+  else{
 
-        //elif bi 22-26
-        //RespAcid
-
-        //else 
-          //someway this beocmes NAGMA?
-  //if ph >7.45 and bi >26
-        // if co2 is 35-45
-        //Metabalk
-
-        //if co2>45
-        // Metabalk
-        // RespAcid   
-
-  //if ph > 7.45 and co2<35
-        //if bi 22-26
-        //RespAlk
-        
-        //if bi <22
-        //RespAlk
-        //MetabAcid?
-
-        //else
-        //Resp alk
-        //Metab alk    
-
-
-  //Compensated Abgs
-  // if ph is 7.35-7.39 and bi<22 and co2<35
-  // Respalk
-  // MetabAcid?
-  
-  
-  //if ph is 7.35-7.39 and co>45 and bi>22
-  // RespAcid
-  // MetabAlk
-
-  //if ph is 7.40-7.45 and bi >26 and co2>35
-  // RespAcid
-  // MetabAlk
-
-  //if ph 7.39 - 7.45 and co<35 and bi >22
-  // Respalk
+  }
+ 
 
 
-
-
-  return outlist;
+  return abg1;
 }
 
 
@@ -320,7 +335,7 @@ class SecondScreen extends StatelessWidget {
       appBar: AppBar(title: TextField(onChanged: (v){datamodel.pat.setAge(double.tryParse(v));},),),
       // body: Text('${a.length}'),
       // body:Text(datamodel.pat.getAge().toString()),
-      body: Text(datamodel.pat.getAbgList().toString()),
+      body: Center(child: Text(datamodel.pat.getAbgList().toString())),
       
     );
   }
