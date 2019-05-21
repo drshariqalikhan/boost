@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
                         leading: CircleAvatar(child: Text('CO2'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'CO2'),
-                             onChanged: (v)=>datamodel.pat.setPh(double.tryParse(v)),
+                             onChanged: (v)=>datamodel.pat.setCo2(double.tryParse(v)),
                             ),   
                       ),
                    
@@ -74,63 +74,63 @@ class Home extends StatelessWidget {
                         leading: CircleAvatar(child: Text('Bi'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'bi'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setBi(double.tryParse(v)),
                             ),   
                       ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('na'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'na'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
-                            ),   
+                            onChanged: (v)=>datamodel.pat.setNa(double.tryParse(v)),
+                              ),   
                       ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('cl'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'cl'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setCl(double.tryParse(v)),
                             ),   
                       ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('alb'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'alb'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setAlb(double.tryParse(v)),
                             ),   
                       ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('pao'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'pao'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setPao(double.tryParse(v)),
                             ),   
                       ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('spo'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'spo'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setSpo(double.tryParse(v)),
                             ),   
                       ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('sao'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'sao'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setSao(double.tryParse(v)),
                             ),   
                       ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('fio'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'fio'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setFio(double.tryParse(v)),
                             ),   
                       ),
                        ListTile(
                         leading: CircleAvatar(child: Text('age'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'age'),
-                            // onChanged: (v)=>datamodel.addValuetoData(int.tryParse(v)),
+                            onChanged: (v)=>datamodel.pat.setAge(double.tryParse(v)),
                             ),   
                       ),  
                    
@@ -147,10 +147,10 @@ class Home extends StatelessWidget {
               
               
               if(datamodel.pat.getPh()!=null){
-              var ab = getAbgFromData(datamodel.pat.getPh(),datamodel.pat.getAge());
-              List valList = getAbnAbgListfrom(datamodel.pat.getPh());
+              // var ab = getAbgFromData(datamodel.pat.getPh(),datamodel.pat.getAge());
+              // List valList = getAbnAbgListfrom(datamodel.pat.getPh());
               // datamodel.pat.setAbgList(valList);
-              datamodel.pat.setAbgList(valList);
+              // datamodel.pat.setAbgList(valList);
               // var nv = datamodel.pat.getAbgList()[3].toString();  
                 print('next');
                     Navigator.pushNamed(context, '/sec');
@@ -174,12 +174,89 @@ class Home extends StatelessWidget {
     return ph+age;
 }
 
-getAbnAbgListfrom(ph){
+getAbnAbgListfrom(age,ph,co2,bi,na,cl,alb,pao,spo,sao,fio){
   List<String> outlist =[];
-  if(ph>=7.35 && ph<=7.55){
-    outlist.add("$ph");
+  List<String> abg1 = [];
+
+  //Calc anion gap
+  var cag = na - (cl+bi) + 2.5*(4-alb);
+  var v1 = cag - 12;
+  var v2 = 24 - bi;
+  var delta = v1/v2;
+
+if (cag>11){
+  if(delta > 2){
+    abg1.add("HAGMA");
+    abg1.add("MetabAlk");
+  }else if (delta >= 8 && delta <=20.1){
+    abg1.add("HAGMA");
+  }else if (delta >= 4 && delta <=9){
+    abg1.add("HAGMA");
+    abg1.add("NAGMA");
+  }else if (delta<0){
+    abg1.add("HAGMA");
+    abg1.add("MetabAlk");
+  }else{
+    abg1.add("NAGMA");
   }
+}  
+
+
+  //if ph is between 7.35-7.45 and co2 is between 35-45 and bi 22-26 
+  // Normal 
   
+  //if ph < 7.35 and co2 >45
+        //if bi >26
+        //RespAcid
+        //Metabalk?
+
+        //elif bi 22-26
+        //RespAcid
+
+        //else 
+          //someway this beocmes NAGMA?
+
+  //if ph >7.45 and bi >26
+        // if co2 is 35-45
+        //Metabalk
+
+        //if co2>45
+        // Metabalk
+        // RespAcid   
+
+  //if ph > 7.45 and co2<35
+        //if bi 22-26
+        //RespAlk
+        
+        //if bi <22
+        //RespAlk
+        //MetabAcid?
+
+        //else
+        //Resp alk
+        //Metab alk    
+
+
+  //Compensated Abgs
+  // if ph is 7.35-7.39 and bi<22 and co2<35
+  // Respalk
+  // MetabAcid?
+  
+  
+  //if ph is 7.35-7.39 and co>45 and bi>22
+  // RespAcid
+  // MetabAlk
+
+  //if ph is 7.40-7.45 and bi >26 and co2>35
+  // RespAcid
+  // MetabAlk
+
+  //if ph 7.39 - 7.45 and co<35 and bi >22
+  // Respalk
+
+
+
+
   return outlist;
 }
 
