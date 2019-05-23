@@ -18,12 +18,16 @@ class DataModel with ChangeNotifier{
   initList(){
     pat._abgList =[];
   }
+  removeFromList(String element){
+    pat._navAbgList.remove(element);
+  }
 
 }
 
 class PatientDataType{
   double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio;
   List<String> _abgList=[];
+  List<String> _navAbgList=[];
 
   getAge()=>_age;
   setAge(double val)=> _age=val;
@@ -58,6 +62,8 @@ class PatientDataType{
   getFio()=>_fio;
   setFio(double val)=> _fio=val;
 
+  getNavAbglist()=>_navAbgList;
+  setNavAbglist(List vallist)=> _navAbgList=vallist;
 
 
   getAbgList()=>_abgList;

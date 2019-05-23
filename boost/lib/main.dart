@@ -1,6 +1,7 @@
 
 import 'package:boost/AbnAbgPages/Hagma.dart';
 import 'package:boost/AbnAbgPages/HighAa.dart';
+import 'package:boost/AbnAbgPages/MetabAlk.dart';
 import 'package:boost/AbnAbgPages/Nagma.dart';
 import 'package:boost/AbnAbgPages/NormalAa.dart';
 import 'package:boost/AbnAbgPages/RespAcid.dart';
@@ -28,13 +29,15 @@ class MyApp extends StatelessWidget {
         home:  Home(),
           
         routes: {
-            '/sec':(context)=>SecondScreen(),
+            '/res':(context)=>Results(),
             '/Hagma':(context)=>Hagma(),
             '/Nagma':(context)=>Nagma(),
+            '/MetabAlk':(context)=>MetabAlk(),
             '/RespAlk':(context)=>RespAlk(),
             '/RespAcid':(context)=>RespAcid(),
             '/HighAa':(context)=>HighAa(),
             '/NormalAa':(context)=>NormalAa(),
+            '/home':(context)=>Home(),
           }
           ),
           );
@@ -165,10 +168,12 @@ class Home extends StatelessWidget {
               );
               // datamodel.pat.setAbgList(valList);
               datamodel.pat.setAbgList(valList);
+              datamodel.pat.setNavAbglist(valList);
               // var nv = datamodel.pat.getAbgList()[3].toString();  
-                print('next');
-                    Navigator.pushNamed(context, '/sec');
-                    // Navigator.pushNamed(context, '/$nv');
+                print('${datamodel.pat.getNavAbglist()}');
+                print('${datamodel.pat.getAbgList()}');
+                    // Navigator.pushNamed(context, '/sec');
+                    Navigator.pushNamed(context, '/${datamodel.pat.getNavAbglist()[0]}');
 
               }
             },
@@ -184,13 +189,29 @@ class Home extends StatelessWidget {
 
 
 
- getAbgFromData(ph,age){
-    return ph+age;
+ getCorrectedAaGradFrom(pao,co2,fio,age){
+
+   var a= fio*713;
+   var b = co2/0.8;
+   var pa = a-b;
+   var actAaGrad = pa-pao;
+   var expAaGrad = (age/4)+4+50*(fio-0.21);
+
+   var diff = expAaGrad-actAaGrad; 
+   return diff.abs();
+    
 }
+
 
 getAbnAbgListfrom({age,ph,co2,bi,na,cl,alb,pao,spo,sao,fio}){
   List<String> outlist =[];
   List<String> abg1 = [];
+
+  //AAgrad
+  var aagrad = getCorrectedAaGradFrom(pao, co2, fio, age);
+
+
+  
 
   //Calc anion gap
   var cag = na - (cl+bi) + 2.5*(4-alb);
@@ -201,31 +222,16 @@ getAbnAbgListfrom({age,ph,co2,bi,na,cl,alb,pao,spo,sao,fio}){
   delta = delta.abs();
   print("Del:$delta");
 
-// if (cag>11){
-//   if(delta > 2){
-//     abg1.add("HAGMA");
-//     abg1.add("MetabAlk");
-//   }else if (delta >= 0.8 && delta <=2){
-//     abg1.add("HAGMA");
-//   }else if (delta >= 0.4 && delta <0.8){
-//     abg1.add("HAGMA");
-//     abg1.add("NAGMA");
-//   }else if (delta<0){
-//     abg1.add("HAGMA");
-//     abg1.add("MetabAlk");
-//   }else{
-//     abg1.add("NAGMA");
-//   }
-// }  
+
 
 if(cag>11){
     if(delta<=0.79){
-    if(!abg1.contains("NAGMA")){abg1.add("NAGMA");}
-    if(!abg1.contains("HAGMA") ){abg1.add("HAGMA");}
+    if(!abg1.contains("Nagma")){abg1.add("Nagma");}
+    if(!abg1.contains("Hagma") ){abg1.add("Hagma");}
   }else if (delta>=0.8 && delta<2.0){
-    if(!abg1.contains("HAGMA") ){abg1.add("HAGMA");}
+    if(!abg1.contains("Hagma") ){abg1.add("Hagma");}
   }else{
-    if(!abg1.contains("HAGMA") ){abg1.add("HAGMA");}
+    if(!abg1.contains("Hagma") ){abg1.add("Hagma");}
     if(!abg1.contains("MetabAlk") ){abg1.add("MetabAlk");}
 
   }
@@ -244,16 +250,17 @@ if(cag>11){
    //NAGMA
    else if (ph<7.35 && bi<22){
      if(co2>=35 && co2<=45){
-       if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
+       if(!abg1.contains("Nagma")|| !abg1.contains("Hagma") ){abg1.add("Nagma");}
      }else if (co2<35){
        var expco2 = 1.5*bi + 8;
        var co_diff = expco2-co2;
        if(!abg1.contains("RespAlk") && co_diff.abs()>2 ){abg1.add("RespAlk");}
-       if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
+      //  if(!abg1.contains("Nagma")|| !abg1.contains("Hagma") ){abg1.add("Nagma");}
+      if(!abg1.contains("Hagma") && !abg1.contains('Nagma') ){abg1.add("Nagma");}
 
      }else{
         if(!abg1.contains("RespAcid")){abg1.add("RespAcid");}
-       if(!abg1.contains("NAGMA")|| !abg1.contains("HAGMA") ){abg1.add("NAGMA");}
+       if(!abg1.contains("Nagma") && !abg1.contains("Hagma") ){abg1.add("Nagma");}
 
      }
    }
@@ -295,7 +302,7 @@ if(cag>11){
       var expbi = 24-2*((40-co2)/10);
       if(!abg1.contains("RespAlk") ){abg1.add("RespAlk");}
      
-      if(!abg1.contains("NAGMA") && bi!=expbi){abg1.add("NAGMA");}
+      if(!abg1.contains("Nagma") && bi!=expbi){abg1.add("Nagma");}
     }else{
       if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
       if(!abg1.contains("MetabAlk")){abg1.add("MetabAlk");}
@@ -323,8 +330,10 @@ if(cag>11){
      if(!abg1.contains("RespAlk")){abg1.add("RespAlk");}
      
   }
-  else{
-
+  if(aagrad>10){
+    if(!abg1.contains("HighAa")){abg1.add("HighAa");}
+  }else{
+    if(!abg1.contains("NormalAa")){abg1.add("NormalAa");}
   }
  
 
@@ -333,20 +342,20 @@ if(cag>11){
 }
 
 
-class SecondScreen extends StatelessWidget {
+class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      final datamodel = Provider.of<DataModel>(context);
      List a = datamodel.pat.getAbgList();
     return Scaffold(
-      appBar: AppBar(title: TextField(onChanged: (v){datamodel.pat.setAge(double.tryParse(v));},),),
+      appBar: AppBar(title:Text(this.toString())),
       // body: Text('${a.length}'),
       // body:Text(datamodel.pat.getAge().toString()),
       body: Center(child: Text(datamodel.pat.getAbgList().toString())),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           datamodel.initList();
-          Navigator.pop(context);
+          Navigator.pushNamed(context, '/home');
         },
       ),
       
