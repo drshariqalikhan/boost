@@ -11,8 +11,10 @@ class Hagma extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(this.toString()),),
-      body: Center(child: Text(datamodel.pat.getAbgList().toString()),),
-     
+      // body: Center(child: Text(datamodel.pat.getAbgList().toString()),),
+     body: Container(
+       child: Column(),
+     ),
      /*
       * 
       */

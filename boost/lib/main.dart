@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
          
           primarySwatch: Colors.blue,
         ),
-        home:  Home(),
+        home: Home(),
           
         routes: {
             '/res':(context)=>Results(),
@@ -136,6 +136,7 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setAge(double.tryParse(v)),
                             ),   
                       ),  
+                      
                    
                   ],
                 ),
