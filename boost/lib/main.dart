@@ -185,7 +185,13 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setTemp(double.tryParse(v)),
                             ),   
                       ),  
-                          
+                      ListTile(
+                        leading: CircleAvatar(child: Text('glu'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'Glucose'),
+                            onChanged: (v)=>datamodel.pat.setGlu(double.tryParse(v)),
+                            ),   
+                      ),  
                    
                   ],
                 ),

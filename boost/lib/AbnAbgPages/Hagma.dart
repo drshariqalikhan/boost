@@ -16,11 +16,18 @@ class Hagma extends StatelessWidget {
      body: Container(
        child: Column(
          children: <Widget>[
-           QuestionCard(
-             Question: "Do the lungs have any crepts?",
-             handleQ: (val)=>datamodel.setHasLungCreptsTo(val: val),
+  
+            QuestionCard(
+             Question: "Is the patient an alcoholic or has consumed alcohol?",
+             handleQ: (val)=>datamodel.setHasAlcoholHistory(val),
              QuestionFontsize: 20.0,
-             qValue: datamodel.pat.gethasLungCrepts(),
+             qValue: datamodel.pat.getHasAlcoholHistory(),
+           ),
+           QuestionCard(
+             Question: "Is the patient a Diabetic?",
+             handleQ: (val)=>datamodel.setIsDiabetic(val),
+             QuestionFontsize: 20.0,
+             qValue: datamodel.pat.getIsDiabetic(),
            ),
          ],
        ),

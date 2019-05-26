@@ -8,17 +8,19 @@ class DataModel with ChangeNotifier{
   // getDataVal()=>_data;
   // // setDataVal(int val)=>_data = val;
 
-  setHasLungCreptsTo({bool val}){
-  pat._hasLungCrepts=val;
-  notifyListeners();
+ 
+
+  setHasAlcoholHistory(bool val){
+    pat._hasAlcoholHistory = val;
+    notifyListeners();
+  }
+  setIsDiabetic(bool val){
+    pat._isDiabetic = val;
+    notifyListeners();
   }
 
-  // void addValuetoData(double val){
-  //   // _data = val;
-  //   // pat._age = val;
-  //   pat.setAge(val);
-  //   notifyListeners();
-  // }
+
+
 
   initList(){
     pat._abgList =[];
@@ -30,8 +32,8 @@ class DataModel with ChangeNotifier{
 }
 
 class PatientDataType{
-  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp;
-  bool _hasLungCrepts;
+  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu;
+  bool _hasAlcoholHistory,_isDiabetic;
   
   List<String> _abgList=[];
   List<String> _navAbgList=[];
@@ -90,9 +92,12 @@ class PatientDataType{
   getTemp()=>_temp;
   setTemp(double val)=> _temp=val;
 
-  gethasLungCrepts()=>_hasLungCrepts;
-  // sethasLungCrepts(bool val)=> _hasLungCrepts = val;
+  getGlu()=>_glu;
+  setGlu(double val)=> _glu=val;
 
+
+  getHasAlcoholHistory()=>_hasAlcoholHistory;
+  getIsDiabetic()=>_isDiabetic;
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;
@@ -100,5 +105,4 @@ class PatientDataType{
 
   getAbgList()=>_abgList;
   setAbgList(List<String> valList)=>_abgList = List.from(_abgList)..addAll(valList);
-  // setAbgList()=>null;
 }
