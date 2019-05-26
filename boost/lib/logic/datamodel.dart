@@ -8,6 +8,11 @@ class DataModel with ChangeNotifier{
   // getDataVal()=>_data;
   // // setDataVal(int val)=>_data = val;
 
+  setHasLungCreptsTo({bool val}){
+  pat._hasLungCrepts=val;
+  notifyListeners();
+  }
+
   // void addValuetoData(double val){
   //   // _data = val;
   //   // pat._age = val;
@@ -25,7 +30,9 @@ class DataModel with ChangeNotifier{
 }
 
 class PatientDataType{
-  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio;
+  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp;
+  bool _hasLungCrepts;
+  
   List<String> _abgList=[];
   List<String> _navAbgList=[];
 
@@ -61,6 +68,31 @@ class PatientDataType{
 
   getFio()=>_fio;
   setFio(double val)=> _fio=val;
+
+  getWt()=>_wt;
+  setWt(double val)=> _wt=val;
+
+  getHt()=>_ht;
+  setHt(double val)=> _ht=val;
+
+  getSbp()=>_sbp;
+  setSbp(double val)=> _sbp=val;
+
+  getDbp()=>_dbp;
+  setDbp(double val)=> _dbp=val;
+
+  getHr()=>_hr;
+  setHr(double val)=> _hr=val;
+
+  getRr()=>_rr;
+  setRr(double val)=> _rr=val;
+
+  getTemp()=>_temp;
+  setTemp(double val)=> _temp=val;
+
+  gethasLungCrepts()=>_hasLungCrepts;
+  // sethasLungCrepts(bool val)=> _hasLungCrepts = val;
+
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

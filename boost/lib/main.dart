@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
          
           primarySwatch: Colors.blue,
         ),
-        home: Home(),
+        home: Hagma(),//Home(),
           
         routes: {
             '/res':(context)=>Results(),
@@ -136,7 +136,56 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setAge(double.tryParse(v)),
                             ),   
                       ),  
-                      
+                       ListTile(
+                        leading: CircleAvatar(child: Text('Wt'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'Wt'),
+                            onChanged: (v)=>datamodel.pat.setWt(double.tryParse(v)),
+                            ),   
+                      ),  
+                       ListTile(
+                        leading: CircleAvatar(child: Text('Ht'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'Ht'),
+                            onChanged: (v)=>datamodel.pat.setHt(double.tryParse(v)),
+                            ),   
+                      ),
+                       ListTile(
+                        leading: CircleAvatar(child: Text('SBP'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'SBP'),
+                            onChanged: (v)=>datamodel.pat.setSbp(double.tryParse(v)),
+                            ),   
+                      ),    
+                       ListTile(
+                        leading: CircleAvatar(child: Text('DBP'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'DBP'),
+                            onChanged: (v)=>datamodel.pat.setDbp(double.tryParse(v)),
+                            ),   
+                      ),  
+                       ListTile(
+                        leading: CircleAvatar(child: Text('HR'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'HR'),
+                            onChanged: (v)=>datamodel.pat.setHr(double.tryParse(v)),
+                            ),   
+                      ),  
+                       ListTile(
+                        leading: CircleAvatar(child: Text('RR'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'RR'),
+                            onChanged: (v)=>datamodel.pat.setRr(double.tryParse(v)),
+                            ),   
+                      ),
+                       ListTile(
+                        leading: CircleAvatar(child: Text('T'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'Temp'),
+                            onChanged: (v)=>datamodel.pat.setTemp(double.tryParse(v)),
+                            ),   
+                      ),  
+                          
                    
                   ],
                 ),
