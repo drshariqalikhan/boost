@@ -229,15 +229,15 @@ class Home extends StatelessWidget {
                       ),
                           QuestionCard(
                         Question: "are there BL crepts in chest?",
-                        handleQ: (val)=>datamodel.sethasDyspnoea(val),
+                        handleQ: (val)=>datamodel.sethasBLCrepts(val),
                         QuestionFontsize: 20.0,
-                        qValue: datamodel.pat.gethasDyspnoea(),
+                        qValue: datamodel.pat.gethasBLCrepts(),
                       ),
                          QuestionCard(
                         Question: "are there UL crepts in chest?",
-                        handleQ: (val)=>datamodel.sethasDyspnoea(val),
+                        handleQ: (val)=>datamodel.sethasULCrepts(val),
                         QuestionFontsize: 20.0,
-                        qValue: datamodel.pat.gethasDyspnoea(),
+                        qValue: datamodel.pat.gethasULCrepts(),
                       ),
                        
 

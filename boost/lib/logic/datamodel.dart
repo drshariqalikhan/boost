@@ -89,6 +89,25 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasBLCrepts(bool val){
+    pat._hasBLCrepts= val;
+    notifyListeners();
+  }
+
+  sethasULCrepts(bool val){
+    pat._hasULCrepts= val;
+    notifyListeners();
+  }
+
+  sethasSTI(bool val){
+    pat._hasSTI= val;
+    notifyListeners();
+  }
+
+  sethasUTIonDipstick(bool val){
+    pat._hasUTIonDipstick= val;
+    notifyListeners();
+  }
 
 
 
@@ -118,7 +137,11 @@ class PatientDataType{
   _hasCough,
   _hasDyspnoea,
   _hasBLBreathSounds,
-  _hasRhonchi;
+  _hasRhonchi,
+  _hasBLCrepts,
+  _hasULCrepts,
+  _hasSTI,
+  _hasUTIonDipstick;
   
   List<String> _abgList=[];
   List<String> _navAbgList=[];
@@ -187,6 +210,8 @@ class PatientDataType{
   gethasDyspnoea()=>_hasDyspnoea;
   gethasBLBreathSounds()=>_hasBLBreathSounds;
   gethasRhonchi()=>_hasRhonchi;
+  gethasBLCrepts()=>_hasBLCrepts;
+  gethasULCrepts()=>_hasULCrepts;
 
   getHasAlcoholHistory()=>_hasAlcoholHistory;
   getIsDiabetic()=>_isDiabetic;
@@ -201,7 +226,8 @@ class PatientDataType{
   gethasSkinPigmentPatch()=>_hasSkinPigmentPatch;
   gethasAbdominalTrauma()=>_hasAbdominalTrauma;
 
-  
+  gethasSTI()=>_hasSTI;
+  gethasUTIonDipstick()=>_hasUTIonDipstick;
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

@@ -95,7 +95,19 @@ class Hagma extends StatelessWidget {
                qValue: datamodel.pat.gethasAbdominalTrauma(),
              ),
 
+              QuestionCard(
+               Question: "Does the patient have an skin abcess,skin/wound infection or ischemic limb/digits?",
+               handleQ: (val)=>datamodel.sethasSTI(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasSTI(),
+             ),
 
+               QuestionCard(
+               Question: "Does the urine diptick show Nitrite positive and Luekocyte positive?",
+               handleQ: (val)=>datamodel.sethasUTIonDipstick(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasUTIonDipstick(),
+             ),
 
 
 
