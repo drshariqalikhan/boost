@@ -23,7 +23,10 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-         
+         floatingActionButtonTheme: FloatingActionButtonThemeData(
+           
+           backgroundColor: Colors.amber
+           ),
           primarySwatch: Colors.blue,
         ),
         home: Hagma(),//Home(),
@@ -191,7 +194,14 @@ class Home extends StatelessWidget {
                             decoration: new InputDecoration.collapsed(hintText: 'Glucose'),
                             onChanged: (v)=>datamodel.pat.setGlu(double.tryParse(v)),
                             ),   
-                      ),  
+                      ),
+                        ListTile(
+                        leading: CircleAvatar(child: Text('Wcc'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'Wcc'),
+                            onChanged: (v)=>datamodel.pat.setWcc(double.tryParse(v)),
+                            ),   
+                      ),
                    
                   ],
                 ),

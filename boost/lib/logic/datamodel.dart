@@ -19,6 +19,50 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasPressorSupport(bool val){
+    pat._hasPressorSupport= val;
+    notifyListeners();
+  }
+
+  sethasSpinalInjury(bool val){
+    pat._hasSpinalInjury= val;
+    notifyListeners();
+  }
+
+  sethasPrimarySignsOfAllergicRxn(bool val){
+    pat._hasPrimarySignsOfAllergicRxn= val;
+    notifyListeners();
+  }
+
+  sethasAcuteBurns(bool val){
+    pat._hasAcuteBurns= val;
+    notifyListeners();
+  }
+
+  sethasAbdominalPain(bool val){
+    pat._hasAbdominalPain= val;
+    notifyListeners();
+  }
+
+  sethasGallStoneOrPancSx(bool val){
+    pat._hasGallStoneOrPancSx= val;
+    notifyListeners();
+  }
+
+  setisTakingSteroids(bool val){
+    pat._isTakingSteroids= val;
+    notifyListeners();
+  }
+
+  sethasPitPathology(bool val){
+    pat._hasPitPathology= val;
+    notifyListeners();
+  }
+
+  sethasSkinPigmentPatch(bool val){
+    pat._hasSkinPigmentPatch= val;
+    notifyListeners();
+  }
 
 
 
@@ -32,8 +76,18 @@ class DataModel with ChangeNotifier{
 }
 
 class PatientDataType{
-  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu;
-  bool _hasAlcoholHistory,_isDiabetic;
+  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu,_wcc;
+  bool _hasAlcoholHistory,
+  _isDiabetic,
+  _hasPressorSupport,
+  _hasSpinalInjury,
+  _hasPrimarySignsOfAllergicRxn,
+  _hasAcuteBurns,
+  _hasAbdominalPain,
+  _hasGallStoneOrPancSx,
+  _isTakingSteroids,
+  _hasPitPathology,
+  _hasSkinPigmentPatch;
   
   List<String> _abgList=[];
   List<String> _navAbgList=[];
@@ -95,9 +149,22 @@ class PatientDataType{
   getGlu()=>_glu;
   setGlu(double val)=> _glu=val;
 
+  getWcc()=>_wcc;
+  setWcc(double val)=> _wcc=val;
+
 
   getHasAlcoholHistory()=>_hasAlcoholHistory;
   getIsDiabetic()=>_isDiabetic;
+  gethasPressorSupport()=>_hasPressorSupport;
+  gethasSpinalInjury()=>_hasSpinalInjury;
+  gethasPrimarySignsOfAllergicRxn()=>_hasPrimarySignsOfAllergicRxn;//acute onset+skin/mucosal swelling 
+  gethasAcuteBurns()=>_hasAcuteBurns;
+  gethasGallStoneOrPancSx()=>_hasGallStoneOrPancSx;
+  gethasAbdominalPain()=>_hasAbdominalPain;
+  getisTakingSteroids()=>_isTakingSteroids;
+  gethasPitPathology()=>_hasPitPathology;
+  gethasSkinPigmentPatch()=>_hasSkinPigmentPatch;
+
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;
