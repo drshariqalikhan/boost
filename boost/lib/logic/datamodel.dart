@@ -64,6 +64,32 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasAbdominalTrauma(bool val){
+    pat._hasAbdominalTrauma= val;
+    notifyListeners();
+  }
+
+  sethasCough(bool val){
+    pat._hasCough= val;
+    notifyListeners();
+  }
+
+  sethasDyspnoea(bool val){
+    pat._hasDyspnoea= val;
+    notifyListeners();
+  }
+
+  sethasBLBreathSounds(bool val){
+    pat._hasBLBreathSounds= val;
+    notifyListeners();
+  }
+
+  sethasRhonchi(bool val){
+    pat._hasRhonchi= val;
+    notifyListeners();
+  }
+
+
 
 
   initList(){
@@ -87,7 +113,12 @@ class PatientDataType{
   _hasGallStoneOrPancSx,
   _isTakingSteroids,
   _hasPitPathology,
-  _hasSkinPigmentPatch;
+  _hasSkinPigmentPatch,
+  _hasAbdominalTrauma,
+  _hasCough,
+  _hasDyspnoea,
+  _hasBLBreathSounds,
+  _hasRhonchi;
   
   List<String> _abgList=[];
   List<String> _navAbgList=[];
@@ -152,6 +183,10 @@ class PatientDataType{
   getWcc()=>_wcc;
   setWcc(double val)=> _wcc=val;
 
+  gethasCough()=>_hasCough;
+  gethasDyspnoea()=>_hasDyspnoea;
+  gethasBLBreathSounds()=>_hasBLBreathSounds;
+  gethasRhonchi()=>_hasRhonchi;
 
   getHasAlcoholHistory()=>_hasAlcoholHistory;
   getIsDiabetic()=>_isDiabetic;
@@ -164,7 +199,9 @@ class PatientDataType{
   getisTakingSteroids()=>_isTakingSteroids;
   gethasPitPathology()=>_hasPitPathology;
   gethasSkinPigmentPatch()=>_hasSkinPigmentPatch;
+  gethasAbdominalTrauma()=>_hasAbdominalTrauma;
 
+  
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

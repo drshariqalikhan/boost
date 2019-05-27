@@ -87,12 +87,14 @@ class Hagma extends StatelessWidget {
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasGallStoneOrPancSx(),
              ),
+         
               QuestionCard(
-               Question: "Does the patient have abdominal pain or tenderness?",
-               handleQ: (val)=>datamodel.sethasAbdominalPain(val),
+               Question: "Did the patient have recent Abdominal trauma?",
+               handleQ: (val)=>datamodel.sethasAbdominalTrauma(val),
                QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasAbdominalPain(),
+               qValue: datamodel.pat.gethasAbdominalTrauma(),
              ),
+
 
 
 

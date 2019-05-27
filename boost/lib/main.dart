@@ -6,6 +6,7 @@ import 'package:boost/AbnAbgPages/Nagma.dart';
 import 'package:boost/AbnAbgPages/NormalAa.dart';
 import 'package:boost/AbnAbgPages/RespAcid.dart';
 import 'package:boost/AbnAbgPages/RespAlk.dart';
+import 'package:boost/components/QuestionCard.dart';
 import 'package:boost/logic/datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
            ),
           primarySwatch: Colors.blue,
         ),
-        home: Hagma(),//Home(),
+        home: Home(),
           
         routes: {
             '/res':(context)=>Results(),
@@ -202,6 +203,44 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setWcc(double.tryParse(v)),
                             ),   
                       ),
+                       QuestionCard(
+                        Question: "Does the patient have a cough?",
+                        handleQ: (val)=>datamodel.sethasCough(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasCough(),
+                      ),
+                       QuestionCard(
+                        Question: "Does the patient have Shortness of breath?",
+                        handleQ: (val)=>datamodel.sethasDyspnoea(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasDyspnoea(),
+                      ),
+                          QuestionCard(
+                        Question: "Are there Breath-Sounds on both sides of chest?",
+                        handleQ: (val)=>datamodel.sethasBLBreathSounds(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasBLBreathSounds(),
+                      ),
+                          QuestionCard(
+                        Question: "is there any wheeze/rhonchi?",
+                        handleQ: (val)=>datamodel.sethasRhonchi(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasRhonchi(),
+                      ),
+                          QuestionCard(
+                        Question: "are there BL crepts in chest?",
+                        handleQ: (val)=>datamodel.sethasDyspnoea(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasDyspnoea(),
+                      ),
+                         QuestionCard(
+                        Question: "are there UL crepts in chest?",
+                        handleQ: (val)=>datamodel.sethasDyspnoea(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasDyspnoea(),
+                      ),
+                       
+
                    
                   ],
                 ),
