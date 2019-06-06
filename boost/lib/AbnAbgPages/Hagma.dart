@@ -96,7 +96,7 @@ class Hagma extends StatelessWidget {
              ),
 
               QuestionCard(
-               Question: "Does the patient have an skin abcess,skin/wound infection or ischemic limb/digits?",
+               Question: "Does the patient have an skin abcess,skin/wound infection,ischemic limb/digits?",
                handleQ: (val)=>datamodel.sethasSTI(val),
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasSTI(),
@@ -109,7 +109,34 @@ class Hagma extends StatelessWidget {
                qValue: datamodel.pat.gethasUTIonDipstick(),
              ),
 
+              QuestionCard(
+               Question: "Does the patient have absent bowel sounds or abdominal pain?",
+               handleQ: (val)=>datamodel.sethasSignsOfPeritonitis(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasSignsOfPeritonitis(),
+               ),
 
+              QuestionCard(
+               Question: "Does the patient have iv cannula with two or more of the following redness,pain or discharge?",
+               handleQ: (val)=>datamodel.sethasSignsOfCLABSI(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasSignsOfCLABSI(),
+               ),
+               //fever from earlier 
+
+               QuestionCard(
+               Question: "Does the patient have any of the following: Neck Rigidity,post-Neuro-ENT surgery, with indewlling CNS cathetar or intruments, Seizure, Acute Altered Mental state?",             
+               handleQ: (val)=>datamodel.sethasSignsOfCNSInfec(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasSignsOfCNSInfec(),
+               ),
+
+                QuestionCard(
+               Question: "Does the patient have any of the following: H/o Infective endocarditis,IV drug abuse,Prosthetic Heart valves, Valvular Heart Ds,Congnital Heart Ds?",             
+               handleQ: (val)=>datamodel.sethasRiskOfIe(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasRiskOfIe(),
+               ),
 
 
 

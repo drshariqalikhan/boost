@@ -109,6 +109,25 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasSignsOfPeritonitis(bool val){
+    pat._hasSignsOfPeritonitis = val;
+    notifyListeners();
+  }
+
+  sethasSignsOfCLABSI(bool val){
+    pat._hasSignsOfCLABSI = val;
+    notifyListeners();
+  }
+  sethasSignsOfCNSInfec(bool val){
+    pat._hasSignsOfCNSInfec = val;
+    notifyListeners();
+  }
+  sethasRiskOfIe(bool val){
+    pat._hasRiskOfIe = val;
+    notifyListeners();
+  }
+
+
 
 
   initList(){
@@ -141,7 +160,12 @@ class PatientDataType{
   _hasBLCrepts,
   _hasULCrepts,
   _hasSTI,
-  _hasUTIonDipstick;
+  _hasUTIonDipstick,
+  _hasSignsOfPeritonitis,
+  _hasSignsOfCLABSI,
+  _hasSignsOfCNSInfec,
+  _hasRiskOfIe;
+
   
   List<String> _abgList=[];
   List<String> _navAbgList=[];
@@ -228,6 +252,10 @@ class PatientDataType{
 
   gethasSTI()=>_hasSTI;
   gethasUTIonDipstick()=>_hasUTIonDipstick;
+  gethasSignsOfPeritonitis()=>_hasSignsOfPeritonitis;
+  gethasSignsOfCLABSI()=>_hasSignsOfCLABSI;
+  gethasSignsOfCNSInfec()=>_hasSignsOfCNSInfec;
+  gethasRiskOfIe()=>_hasRiskOfIe;
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;
