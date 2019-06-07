@@ -117,7 +117,7 @@ class Hagma extends StatelessWidget {
                ),
 
               QuestionCard(
-               Question: "Does the patient have iv cannula with two or more of the following redness,pain or discharge?",
+               Question: "Is there a iv cannula with two or more of the following redness,pain or discharge?",
                handleQ: (val)=>datamodel.sethasSignsOfCLABSI(val),
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasSignsOfCLABSI(),
@@ -125,17 +125,60 @@ class Hagma extends StatelessWidget {
                //fever from earlier 
 
                QuestionCard(
-               Question: "Does the patient have any of the following: Neck Rigidity,post-Neuro-ENT surgery, with indewlling CNS cathetar or intruments, Seizure, Acute Altered Mental state?",             
+               Question: "Is there any of the following: Neck Rigidity,post-Neuro-ENT surgery, with indewlling CNS cathetar or intruments, Seizure, Acute Altered Mental state?",             
                handleQ: (val)=>datamodel.sethasSignsOfCNSInfec(val),
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasSignsOfCNSInfec(),
                ),
 
                 QuestionCard(
-               Question: "Does the patient have any of the following: H/o Infective endocarditis,IV drug abuse,Prosthetic Heart valves, Valvular Heart Ds,Congnital Heart Ds?",             
+               Question: "Is there  any of the following: H/o Infective endocarditis,IV drug abuse,Prosthetic Heart valves, Valvular Heart Ds,Congnital Heart Ds?",             
                handleQ: (val)=>datamodel.sethasRiskOfIe(val),
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasRiskOfIe(),
+               ),
+
+                QuestionCard(
+               Question: "Is the JVP raised?",             
+               handleQ: (val)=>datamodel.setisJVPHi(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.getisJVPHi(),
+               ),
+
+              QuestionCard(
+               Question: "Does the Patient have CHF or IHD?",             
+               handleQ: (val)=>datamodel.sethasHistOfCHFIHD(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfCHFIHD(),
+               ),
+
+
+              QuestionCard(
+               Question: "Does the Patient have H/o DVT or PE?",             
+               handleQ: (val)=>datamodel.sethasHistOfDVTPE(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfDVTPE(),
+               ),
+
+              QuestionCard(
+               Question: "Has the patient has any recent (<1mo) surgery or lower limb fracture?",             
+               handleQ: (val)=>datamodel.sethasHistOfRecentSxOrFrac(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfRecentSxOrFrac(),
+               ),
+
+              QuestionCard(
+               Question: "Does the patient have U/L lower limb pain?",             
+               handleQ: (val)=>datamodel.sethasUlLLPain(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasUlLLPain(),
+               ), 
+
+               QuestionCard(
+               Question: "Does the patient have pain on pressing the calves?",             
+               handleQ: (val)=>datamodel.sethasCalfTenderness(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasCalfTenderness(),
                ),
 
 

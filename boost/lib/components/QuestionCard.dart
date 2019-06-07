@@ -23,7 +23,7 @@ class QuestionCard extends StatelessWidget{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              AutoSizeText("$Question",style: TextStyle(fontSize: QuestionFontsize,fontWeight: FontWeight.bold,),maxLines: 2,),
+              AutoSizeText("$Question",style: TextStyle(fontSize: QuestionFontsize,fontWeight: FontWeight.bold,),maxLines: 4,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[

@@ -74,6 +74,11 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasHemoptysis(bool val){
+    pat._hasHemoptysis= val;
+    notifyListeners();
+  }
+
   sethasDyspnoea(bool val){
     pat._hasDyspnoea= val;
     notifyListeners();
@@ -96,6 +101,16 @@ class DataModel with ChangeNotifier{
 
   sethasULCrepts(bool val){
     pat._hasULCrepts= val;
+    notifyListeners();
+  }
+
+  sethasChestPain(bool val){
+    pat._hasChestPain= val;
+    notifyListeners();
+  }
+
+  sethasMalig(bool val){
+    pat._hasMalig= val;
     notifyListeners();
   }
 
@@ -127,6 +142,36 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  setisJVPHi(bool val){
+    pat._isJVPHi = val;
+    notifyListeners();
+  }
+
+  sethasHistOfCHFIHD(bool val){
+    pat._hasHistOfCHFIHD = val;
+    notifyListeners();
+  }
+
+  sethasHistOfDVTPE(bool val){
+    pat._hasHistOfDVTPE = val;
+    notifyListeners();
+  }
+
+  sethasHistOfRecentSxOrFrac(bool val){
+    pat._hasHistOfRecentSxOrFrac = val;
+    notifyListeners();
+  }
+
+  sethasUlLLPain(bool val){
+    pat._hasUlLLPain= val;
+    notifyListeners();
+  }
+
+  sethasCalfTenderness(bool val){
+    pat._hasCalfTenderness= val;
+    notifyListeners();
+  }
+
 
 
 
@@ -154,17 +199,26 @@ class PatientDataType{
   _hasSkinPigmentPatch,
   _hasAbdominalTrauma,
   _hasCough,
+  _hasHemoptysis,
   _hasDyspnoea,
   _hasBLBreathSounds,
   _hasRhonchi,
   _hasBLCrepts,
   _hasULCrepts,
+  _hasChestPain,
+  _hasMalig,
   _hasSTI,
   _hasUTIonDipstick,
   _hasSignsOfPeritonitis,
   _hasSignsOfCLABSI,
   _hasSignsOfCNSInfec,
-  _hasRiskOfIe;
+  _hasRiskOfIe,
+  _isJVPHi,
+  _hasHistOfCHFIHD,
+  _hasHistOfDVTPE,
+  _hasHistOfRecentSxOrFrac,
+  _hasUlLLPain,
+  _hasCalfTenderness;
 
   
   List<String> _abgList=[];
@@ -231,11 +285,14 @@ class PatientDataType{
   setWcc(double val)=> _wcc=val;
 
   gethasCough()=>_hasCough;
+  gethasHemoptysis()=>_hasHemoptysis;
   gethasDyspnoea()=>_hasDyspnoea;
   gethasBLBreathSounds()=>_hasBLBreathSounds;
   gethasRhonchi()=>_hasRhonchi;
   gethasBLCrepts()=>_hasBLCrepts;
   gethasULCrepts()=>_hasULCrepts;
+  gethasChestPain()=>_hasChestPain;
+  gethasMalig()=>_hasMalig;
 
   getHasAlcoholHistory()=>_hasAlcoholHistory;
   getIsDiabetic()=>_isDiabetic;
@@ -256,6 +313,13 @@ class PatientDataType{
   gethasSignsOfCLABSI()=>_hasSignsOfCLABSI;
   gethasSignsOfCNSInfec()=>_hasSignsOfCNSInfec;
   gethasRiskOfIe()=>_hasRiskOfIe;
+
+  getisJVPHi()=>_isJVPHi;
+  gethasHistOfCHFIHD()=>_hasHistOfCHFIHD;
+  gethasHistOfDVTPE()=>_hasHistOfDVTPE;
+  gethasHistOfRecentSxOrFrac()=>_hasHistOfRecentSxOrFrac;
+  gethasUlLLPain()=>_hasUlLLPain;
+  gethasCalfTenderness()=>_hasCalfTenderness;
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

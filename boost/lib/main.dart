@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
            ),
           primarySwatch: Colors.blue,
         ),
-        home: Home(),
+        // home: Home(),
+        home: Hagma(),
           
         routes: {
             '/res':(context)=>Results(),
@@ -210,6 +211,14 @@ class Home extends StatelessWidget {
                         qValue: datamodel.pat.gethasCough(),
                       ),
                        QuestionCard(
+                        Question: "Does the patient have a Hemoptysis?",
+                        handleQ: (val)=>datamodel.sethasHemoptysis(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasHemoptysis(),
+                      ),
+
+
+                       QuestionCard(
                         Question: "Does the patient have Shortness of breath?",
                         handleQ: (val)=>datamodel.sethasDyspnoea(val),
                         QuestionFontsize: 20.0,
@@ -239,7 +248,19 @@ class Home extends StatelessWidget {
                         QuestionFontsize: 20.0,
                         qValue: datamodel.pat.gethasULCrepts(),
                       ),
-                       
+                       QuestionCard(
+                        Question: "Does the patient have any chest pain?",
+                        handleQ: (val)=>datamodel.sethasChestPain(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasChestPain(),
+                      ),
+
+                        QuestionCard(
+                        Question: "Does the patient have any malignancy?",
+                        handleQ: (val)=>datamodel.sethasMalig(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasMalig(),
+                      ),
 
                    
                   ],
