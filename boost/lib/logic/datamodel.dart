@@ -172,6 +172,11 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasSharpOrBluntChestTrauma(bool val){
+    pat._hasSharpOrBluntChestTrauma= val;
+    notifyListeners();
+  }
+
 
 
 
@@ -218,7 +223,8 @@ class PatientDataType{
   _hasHistOfDVTPE,
   _hasHistOfRecentSxOrFrac,
   _hasUlLLPain,
-  _hasCalfTenderness;
+  _hasCalfTenderness,
+  _hasSharpOrBluntChestTrauma;
 
   
   List<String> _abgList=[];
@@ -320,6 +326,8 @@ class PatientDataType{
   gethasHistOfRecentSxOrFrac()=>_hasHistOfRecentSxOrFrac;
   gethasUlLLPain()=>_hasUlLLPain;
   gethasCalfTenderness()=>_hasCalfTenderness;
+
+  gethasSharpOrBluntChestTrauma()=>_hasSharpOrBluntChestTrauma;
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

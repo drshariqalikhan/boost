@@ -181,6 +181,13 @@ class Hagma extends StatelessWidget {
                qValue: datamodel.pat.gethasCalfTenderness(),
                ),
 
+               QuestionCard(
+               Question: "Has the patient has recent chest trauma or sharp object penetration into the chest?",             
+               handleQ: (val)=>datamodel.sethasSharpOrBluntChestTrauma(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasSharpOrBluntChestTrauma(),
+               ),
+
 
 
 
