@@ -177,6 +177,33 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasAcuteOnsetOfSymptoms(bool val){
+    pat._hasAcuteOnsetOfSymptoms= val;
+    notifyListeners();
+  }
+
+  sethasPulsusParadoxus(bool val){
+    pat._hasPulsusParadoxus= val;
+    notifyListeners();
+  }
+
+  sethasRecentRadioTx(bool val){
+    pat._hasRecentRadioTx= val;
+    notifyListeners();
+  }
+
+  sethasTB(bool val){
+    pat._hasTB= val;
+    notifyListeners();
+  }
+
+
+  sethasHistOfPericardEff(bool val){
+    pat._hasHistOfPericardEff= val;
+    notifyListeners();
+  }
+
+
 
 
 
@@ -224,7 +251,12 @@ class PatientDataType{
   _hasHistOfRecentSxOrFrac,
   _hasUlLLPain,
   _hasCalfTenderness,
-  _hasSharpOrBluntChestTrauma;
+  _hasSharpOrBluntChestTrauma,
+  _hasAcuteOnsetOfSymptoms,
+  _hasPulsusParadoxus,
+  _hasRecentRadioTx,
+  _hasTB,
+  _hasHistOfPericardEff;
 
   
   List<String> _abgList=[];
@@ -328,6 +360,11 @@ class PatientDataType{
   gethasCalfTenderness()=>_hasCalfTenderness;
 
   gethasSharpOrBluntChestTrauma()=>_hasSharpOrBluntChestTrauma;
+  gethasAcuteOnsetOfSymptoms()=>_hasAcuteOnsetOfSymptoms;
+  gethasPulsusParadoxus()=>_hasPulsusParadoxus;
+  gethasRecentRadioTx()=>_hasRecentRadioTx;
+  gethasTB()=>_hasTB;
+  gethasHistOfPericardEff()=>_hasHistOfPericardEff;
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

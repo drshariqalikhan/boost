@@ -17,8 +17,7 @@ class Hagma extends StatelessWidget {
        child: SingleChildScrollView(
          scrollDirection: Axis.vertical,
          child: Column(
-           children: <Widget>[
-  
+           children: <Widget>[            
               QuestionCard(
                Question: "Is the patient an alcoholic or has consumed alcohol?",
                handleQ: (val)=>datamodel.setHasAlcoholHistory(val),
@@ -186,6 +185,42 @@ class Hagma extends StatelessWidget {
                handleQ: (val)=>datamodel.sethasSharpOrBluntChestTrauma(val),
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasSharpOrBluntChestTrauma(),
+               ),
+
+
+               QuestionCard(
+               Question: "Did the current symptoms develop just a few hours/minutes back?",             
+               handleQ: (val)=>datamodel.sethasAcuteOnsetOfSymptoms(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasAcuteOnsetOfSymptoms(),
+               ),
+
+                QuestionCard(
+               Question: "Does the systolic BP FALL by >10 mmHg on Inspiration OR Does the radial pulse feel WEAKER when the patient inspires?",             
+               handleQ: (val)=>datamodel.sethasPulsusParadoxus(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasPulsusParadoxus(),
+               ),
+
+               QuestionCard(
+               Question: "Has the patient recently had RadioTherapy?",             
+               handleQ: (val)=>datamodel.sethasPulsusParadoxus(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasPulsusParadoxus(),
+               ),
+
+              QuestionCard(
+               Question: "Does the patient have TB?",             
+               handleQ: (val)=>datamodel.sethasTB(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasTB(),
+               ),
+
+               QuestionCard(
+               Question: "Does the patient have a h/o Pericardial Effusion?",             
+               handleQ: (val)=>datamodel.sethasHistOfPericardEff(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfPericardEff(),
                ),
 
 
