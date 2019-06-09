@@ -1,3 +1,4 @@
+import 'package:boost/components/QuestionCard.dart';
 import 'package:boost/logic/datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,24 @@ class Nagma extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(this.toString()),),
-      body: Center(child: Text(datamodel.pat.getAbgList().toString()),),
+      // body: Center(child: Text(datamodel.pat.getAbgList().toString()),),
+      body:Container(
+       child: SingleChildScrollView(
+         scrollDirection: Axis.vertical,
+         child: Column(
+           children: <Widget>[ 
+              QuestionCard(
+               Question: "Is the patient an alcoholic or has consumed alcohol?",
+               handleQ: (val)=>datamodel.setHasAlcoholHistory(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.getHasAlcoholHistory(),
+             ),
+
+           ]),
+           )
+           ),
+      
+      
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           if(datamodel.pat.getNavAbglist().length>0){

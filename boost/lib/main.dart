@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         // home: Home(),
-        home: Hagma(),
+        home: Nagma(),
         debugShowCheckedModeBanner: false,
       
           
