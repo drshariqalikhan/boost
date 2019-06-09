@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class DataModel with ChangeNotifier{
@@ -9,6 +11,15 @@ class DataModel with ChangeNotifier{
   // // setDataVal(int val)=>_data = val;
 
  
+  setisBlack(bool val){
+    pat._isBlack = val;
+    notifyListeners();
+  }
+
+  setisMale(bool val){
+    pat._isMale = val;
+    notifyListeners();
+  }
 
   setHasAlcoholHistory(bool val){
     pat._hasAlcoholHistory = val;
@@ -203,6 +214,18 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasAcuteHemorrghe(bool val){
+    pat._hasAcuteHemorrghe= val;
+    notifyListeners();
+  }
+
+  sethasAcuteGiFluidLoss(bool val){
+    pat._hasAcuteGiFluidLoss= val;
+    notifyListeners();
+  }
+
+
+
 
 
 
@@ -217,8 +240,11 @@ class DataModel with ChangeNotifier{
 }
 
 class PatientDataType{
-  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu,_wcc;
-  bool _hasAlcoholHistory,
+  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu,_wcc,_cr;
+  bool
+  _isMale,
+  _isBlack, 
+  _hasAlcoholHistory,
   _isDiabetic,
   _hasPressorSupport,
   _hasSpinalInjury,
@@ -256,7 +282,10 @@ class PatientDataType{
   _hasPulsusParadoxus,
   _hasRecentRadioTx,
   _hasTB,
-  _hasHistOfPericardEff;
+  _hasHistOfPericardEff,
+  _hasAcuteHemorrghe,
+  _hasAcuteGiFluidLoss;
+
 
   
   List<String> _abgList=[];
@@ -322,6 +351,12 @@ class PatientDataType{
   getWcc()=>_wcc;
   setWcc(double val)=> _wcc=val;
 
+  getCr()=>_cr;
+  setCr(double val)=> _cr=val;
+
+  getisBlack()=>_isBlack;
+  getisMale()=>_isMale;
+
   gethasCough()=>_hasCough;
   gethasHemoptysis()=>_hasHemoptysis;
   gethasDyspnoea()=>_hasDyspnoea;
@@ -366,10 +401,47 @@ class PatientDataType{
   gethasTB()=>_hasTB;
   gethasHistOfPericardEff()=>_hasHistOfPericardEff;
 
+  gethasAcuteHemorrghe()=>_hasAcuteHemorrghe;
+  gethasAcuteGiFluidLoss()=>_hasAcuteGiFluidLoss;
+
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;
 
 
   getAbgList()=>_abgList;
   setAbgList(List<String> valList)=>_abgList = List.from(_abgList)..addAll(valList);
+
+
+
+  //calculate GFR
+  calcC(){
+    if(!_isMale){
+      if(_cr>0.7){
+        return -1.209;
+      }else{
+        return -0.329;
+      }
+    }else{
+      if(_cr>0.9){
+        return -1.209;
+      }else{
+        return -0.411;
+      }
+    }
+  }
+  getGfr(){
+    double A  = _isMale?141:144;
+    double B  = _isMale?0.9:0.7;
+
+    double C = calcC();
+    double blackCoef = _isBlack?1.159:1;
+
+    double val2 = pow(_cr/B,C);
+    double val3 = pow(0.993,_age);
+  
+    var result = A*val2*val3*blackCoef;
+    return result;
+    }
+
+
 }

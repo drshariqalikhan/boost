@@ -223,6 +223,22 @@ class Hagma extends StatelessWidget {
                qValue: datamodel.pat.gethasHistOfPericardEff(),
                ),
 
+               QuestionCard(
+               Question: "Has the patient had an acute Hemorraghe?",             
+               handleQ: (val)=>datamodel.sethasAcuteHemorrghe(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasAcuteHemorrghe(),
+               ),
+
+
+              QuestionCard(
+               Question: "Has the patient had an acute Gi Fluid loss like diarrhoea or vomitting?",             
+               handleQ: (val)=>datamodel.sethasAcuteGiFluidLoss(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasAcuteGiFluidLoss(),
+               ),
+
+
 
 
 

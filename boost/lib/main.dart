@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
            ),
           primarySwatch: Colors.blue,
         ),
-        // home: Home(),
-        home: Hagma(),
+        home: Home(),
+        // home: Hagma(),
           
         routes: {
             '/res':(context)=>Results(),
@@ -204,6 +204,26 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setWcc(double.tryParse(v)),
                             ),   
                       ),
+                       ListTile(
+                        leading: CircleAvatar(child: Text('Cr'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'Cr'),
+                            onChanged: (v)=>datamodel.pat.setCr(double.tryParse(v)),
+                            ),   
+                      ),
+
+                       QuestionCard(
+                        Question: "Is the patient a Black?",
+                        handleQ: (val)=>datamodel.setisBlack(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.getisBlack(),
+                      ),
+                       QuestionCard(
+                        Question: "Is the patient a Male?",
+                        handleQ: (val)=>datamodel.setisMale(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.getisMale(),
+                      ),
                        QuestionCard(
                         Question: "Does the patient have a cough?",
                         handleQ: (val)=>datamodel.sethasCough(val),
@@ -267,7 +287,12 @@ class Home extends StatelessWidget {
                 ),
             ),
           ),
-        
+        // floatingActionButton:  FloatingActionButton(
+        //   onPressed: (){
+        //     print('age:${datamodel.pat.getAge()}\n ismale:${datamodel.pat.getisMale()} \n isblack:${datamodel.pat.getisBlack()} \n cr: ${datamodel.pat.getCr()}');
+        //     print(datamodel.pat.getGfr().toString());
+        //   },
+        // ),
           floatingActionButton: FloatingActionButton(
 
             child: Icon(Icons.arrow_forward),
@@ -295,6 +320,7 @@ class Home extends StatelessWidget {
               // datamodel.pat.setAbgList(valList);
               datamodel.pat.setAbgList(valList);
               datamodel.pat.setNavAbglist(valList);
+              datamodel.pat.getGfr();
               // var nv = datamodel.pat.getAbgList()[3].toString();  
                 print('${datamodel.pat.getNavAbglist()}');
                 print('${datamodel.pat.getAbgList()}');
@@ -307,11 +333,14 @@ class Home extends StatelessWidget {
         
       ),
             
-         
+        
         
       );
   }
 }
+
+
+
 
 
 
