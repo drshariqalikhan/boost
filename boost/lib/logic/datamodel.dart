@@ -225,6 +225,21 @@ class DataModel with ChangeNotifier{
   }
 
 
+  sethasHistOfToxinAlcholIntake(bool val){
+    pat._hasHistOfToxinAlcholIntake = val;
+    notifyListeners();
+  }
+
+  sethasHistOfSbBypass(bool val){
+    pat._hasHistOfSbBypass = val;
+    notifyListeners();
+  }
+
+  sethasHistOfChronParacet(bool val){
+    pat._hasHistOfChronParacet = val;
+    notifyListeners();
+  }
+
 
 
 
@@ -284,7 +299,10 @@ class PatientDataType{
   _hasTB,
   _hasHistOfPericardEff,
   _hasAcuteHemorrghe,
-  _hasAcuteGiFluidLoss;
+  _hasAcuteGiFluidLoss,
+  _hasHistOfToxinAlcholIntake,
+  _hasHistOfSbBypass,
+  _hasHistOfChronParacet;
 
 
   
@@ -404,6 +422,11 @@ class PatientDataType{
   gethasAcuteHemorrghe()=>_hasAcuteHemorrghe;
   gethasAcuteGiFluidLoss()=>_hasAcuteGiFluidLoss;
 
+  gethasHistOfToxinAlcholIntake()=>_hasHistOfToxinAlcholIntake;
+  gethasHistOfSbBypass()=>_hasHistOfSbBypass;
+  gethasHistOfChronParacet()=>_hasHistOfChronParacet;
+
+
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;
 
@@ -412,6 +435,8 @@ class PatientDataType{
   setAbgList(List<String> valList)=>_abgList = List.from(_abgList)..addAll(valList);
 
 
+ //Calculate Anion Gap
+ getAnionGap()=>_na - (_cl+_bi) + 2.5*(4-_alb);
 
   //calculate GFR
   calcC(){

@@ -238,6 +238,27 @@ class Hagma extends StatelessWidget {
                qValue: datamodel.pat.gethasAcuteGiFluidLoss(),
                ),
 
+              QuestionCard(
+               Question: "Does the patient have h/o acute ingestion of substance?",             
+               handleQ: (val)=>datamodel.sethasHistOfToxinAlcholIntake(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfToxinAlcholIntake(),
+               ),
+
+               QuestionCard(
+               Question: "Does the patient have h/o Major small bowel bypass like JJ bypass?",             
+               handleQ: (val)=>datamodel.sethasHistOfSbBypass(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfSbBypass(),
+               ),
+
+                QuestionCard(
+               Question: "Is the patient on long term paracetamol?",             
+               handleQ: (val)=>datamodel.sethasHistOfChronParacet(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfChronParacet(),
+               ),
+
 
 
 
