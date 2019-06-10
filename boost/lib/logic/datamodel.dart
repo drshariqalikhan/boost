@@ -276,6 +276,35 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasHistOfRespDepDrugsIntake(bool val){
+    pat._hasHistOfRespDepDrugsIntake = val;
+    notifyListeners();
+  }
+
+  sethasAcuteBrainInjuryOrStroke(bool val){
+    pat._hasAcuteBrainInjuryOrStroke = val;
+    notifyListeners();
+  }
+
+  sethasCopd(bool val){
+    pat._hasCopd = val;
+    notifyListeners();
+  }
+
+  sethasAsthma(bool val){
+    pat._hasAsthma = val;
+    notifyListeners();
+  }
+
+  setisTakingTpn(bool val){
+    pat._isTakingTpn = val;
+    notifyListeners();
+  }
+
+  sethasHistOfAcuteSeizure(bool val){
+    pat._hasHistOfAcuteSeizure = val;
+    notifyListeners();
+  }
 
 
 
@@ -345,7 +374,13 @@ class PatientDataType{
   _hasXsVomitNgLoss,
   _isTakingDiuretics,
   _isTakingLicorice,
-  _isTakingCaSuppl;
+  _isTakingCaSuppl,
+  _hasHistOfRespDepDrugsIntake,
+  _hasAcuteBrainInjuryOrStroke,
+  _hasCopd,
+  _hasAsthma,
+  _isTakingTpn,
+  _hasHistOfAcuteSeizure;
 
 
   
@@ -479,6 +514,14 @@ class PatientDataType{
   getisTakingDiuretics()=>_isTakingDiuretics;
   getisTakingLicorice()=>_isTakingLicorice;
   getisTakingCaSuppl()=>_isTakingCaSuppl;
+
+  gethasHistOfRespDepDrugsIntake()=>_hasHistOfRespDepDrugsIntake;
+  gethasAcuteBrainInjuryOrStroke()=>_hasAcuteBrainInjuryOrStroke;
+  gethasCopd()=>_hasCopd;
+  gethasAsthma()=>_hasAsthma;
+  getisTakingTpn()=>_isTakingTpn;
+  gethasHistOfAcuteSeizure()=>_hasHistOfAcuteSeizure;
+
 
 
   getNavAbglist()=>_navAbgList;
