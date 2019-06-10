@@ -19,11 +19,18 @@ class Nagma extends StatelessWidget {
          child: Column(
            children: <Widget>[ 
               QuestionCard(
-               Question: "Is the patient an alcoholic or has consumed alcohol?",
-               handleQ: (val)=>datamodel.setHasAlcoholHistory(val),
+               Question: "Has the patient been given >3L Normal Saline in 24hrs?",
+               handleQ: (val)=>datamodel.sethasHistOfXsNacl(val),
                QuestionFontsize: 20.0,
-               qValue: datamodel.pat.getHasAlcoholHistory(),
+               qValue: datamodel.pat.gethasHistOfXsNacl(),
+             ),   
+              QuestionCard(
+               Question: "Has the patient had a urinary diversion op or is the patient having diarrhoea or taking laxatives?",
+               handleQ: (val)=>datamodel.sethasHistOfLaxUrndivOrDiarr(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfLaxUrndivOrDiarr(),
              ),
+
 
            ]),
            )

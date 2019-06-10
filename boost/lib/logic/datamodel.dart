@@ -240,6 +240,42 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasHistOfXsNacl(bool val){
+    pat._hasHistOfXsNacl = val;
+    notifyListeners();
+  }
+
+  sethasHistOfLaxUrndivOrDiarr(bool val){
+    pat._hasHistOfLaxUrndivOrDiarr = val;
+    notifyListeners();
+  }
+
+
+  sethasLowJvpOrNegBal(bool val){
+    pat._hasLowJvpOrNegBal = val;
+    notifyListeners();
+  }
+
+  sethasXsVomitNgLoss(bool val){
+    pat._hasXsVomitNgLoss = val;
+    notifyListeners();
+  }
+
+  setisTakingDiuretics(bool val){
+    pat._isTakingDiuretics = val;
+    notifyListeners();
+  }
+
+  setisTakingLicorice(bool val){
+    pat._isTakingLicorice = val;
+    notifyListeners();
+  }
+
+  setisTakingCaSuppl(bool val){
+    pat._isTakingCaSuppl = val;
+    notifyListeners();
+  }
+
 
 
 
@@ -302,7 +338,14 @@ class PatientDataType{
   _hasAcuteGiFluidLoss,
   _hasHistOfToxinAlcholIntake,
   _hasHistOfSbBypass,
-  _hasHistOfChronParacet;
+  _hasHistOfChronParacet,
+  _hasHistOfXsNacl,
+  _hasHistOfLaxUrndivOrDiarr,
+  _hasLowJvpOrNegBal,
+  _hasXsVomitNgLoss,
+  _isTakingDiuretics,
+  _isTakingLicorice,
+  _isTakingCaSuppl;
 
 
   
@@ -425,6 +468,17 @@ class PatientDataType{
   gethasHistOfToxinAlcholIntake()=>_hasHistOfToxinAlcholIntake;
   gethasHistOfSbBypass()=>_hasHistOfSbBypass;
   gethasHistOfChronParacet()=>_hasHistOfChronParacet;
+
+  gethasHistOfXsNacl()=>_hasHistOfXsNacl;
+  gethasHistOfLaxUrndivOrDiarr()=>_hasHistOfLaxUrndivOrDiarr;
+
+
+
+  gethasLowJvpOrNegBal()=>_hasLowJvpOrNegBal;
+  gethasXsVomitNgLoss()=>_hasXsVomitNgLoss;
+  getisTakingDiuretics()=>_isTakingDiuretics;
+  getisTakingLicorice()=>_isTakingLicorice;
+  getisTakingCaSuppl()=>_isTakingCaSuppl;
 
 
   getNavAbglist()=>_navAbgList;

@@ -137,7 +137,7 @@ class Hagma extends StatelessWidget {
                qValue: datamodel.pat.gethasRiskOfIe(),
                ),
 
-                QuestionCard(
+               QuestionCard(
                Question: "Is the JVP raised?",             
                handleQ: (val)=>datamodel.setisJVPHi(val),
                QuestionFontsize: 20.0,
@@ -231,12 +231,6 @@ class Hagma extends StatelessWidget {
                ),
 
 
-              QuestionCard(
-               Question: "Has the patient had an acute Gi Fluid loss like diarrhoea or vomitting?",             
-               handleQ: (val)=>datamodel.sethasAcuteGiFluidLoss(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasAcuteGiFluidLoss(),
-               ),
 
               QuestionCard(
                Question: "Does the patient have h/o acute ingestion of substance?",             

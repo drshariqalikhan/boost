@@ -285,6 +285,14 @@ class Home extends StatelessWidget {
                         qValue: datamodel.pat.gethasMalig(),
                       ),
 
+                      
+                      QuestionCard(
+                      Question: "Has the patient had an acute Gi Fluid loss like diarrhoea or vomitting?",             
+                      handleQ: (val)=>datamodel.sethasAcuteGiFluidLoss(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasAcuteGiFluidLoss(),
+                      ),
+
                    
                   ],
                 ),
