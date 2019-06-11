@@ -326,6 +326,11 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  setsuspectedDsList(List mylist){
+    pat.suspectedDsList = mylist;
+    notifyListeners();
+  }
+
 
   initList(){
     pat._abgList =[];
@@ -337,6 +342,7 @@ class DataModel with ChangeNotifier{
 }
 
 class PatientDataType{
+  List suspectedDsList;
   double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu,_wcc,_cr;
   bool
   _isMale,
@@ -550,6 +556,7 @@ class PatientDataType{
   gethasLowTidalVol()=>_hasLowTidalVol;
 
 
+  getsuspectedDsList()=>suspectedDsList;  
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

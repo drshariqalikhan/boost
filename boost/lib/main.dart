@@ -348,50 +348,50 @@ class Home extends StatelessWidget {
                 ),
             ),
           ),
-        floatingActionButton:  FloatingActionButton(
-          onPressed: (){
-            // print('age:${datamodel.pat.getAge()}\n ismale:${datamodel.pat.getisMale()} \n isblack:${datamodel.pat.getisBlack()} \n cr: ${datamodel.pat.getCr()}');
-            // print(datamodel.pat.getGfr().toString());
-            print(datamodel.pat.getAnionGap().toString());
-          },
-        ),
-          // floatingActionButton: FloatingActionButton(
+        // floatingActionButton:  FloatingActionButton(
+        //   onPressed: (){
+        //     // print('age:${datamodel.pat.getAge()}\n ismale:${datamodel.pat.getisMale()} \n isblack:${datamodel.pat.getisBlack()} \n cr: ${datamodel.pat.getCr()}');
+        //     // print(datamodel.pat.getGfr().toString());
+        //     print(datamodel.pat.getAnionGap().toString());
+        //   },
+        // ),
+          floatingActionButton: FloatingActionButton(
 
-          //   child: Icon(Icons.arrow_forward),
-          //   onPressed: (){
-          //     print('ph:${datamodel.pat.getPh().toString()} age:${datamodel.pat.getAge().toString()}');
+            child: Icon(Icons.arrow_forward),
+            onPressed: (){
+              print('ph:${datamodel.pat.getPh().toString()} age:${datamodel.pat.getAge().toString()}');
               
               
-          //     if(datamodel.pat.getPh()!=null){
-          //     // var ab = getAbgFromData(datamodel.pat.getPh(),datamodel.pat.getAge());
-          //     // List valList = getAbnAbgListfrom(datamodel.pat.getPh());
-          //     List valList = getAbnAbgListfrom(
-          //       age: datamodel.pat.getAge(),
-          //       alb: datamodel.pat.getAlb(),
-          //       bi: datamodel.pat.getBi(),
-          //       cl: datamodel.pat.getCl(),
-          //       co2: datamodel.pat.getCo2(),
-          //       fio: datamodel.pat.getFio(),
-          //       na: datamodel.pat.getNa(),
-          //       pao: datamodel.pat.getPao(),
-          //       ph: datamodel.pat.getPh(),
-          //       sao: datamodel.pat.getSao(),
-          //       spo: datamodel.pat.getSpo()
+              if(datamodel.pat.getPh()!=null){
+              // var ab = getAbgFromData(datamodel.pat.getPh(),datamodel.pat.getAge());
+              // List valList = getAbnAbgListfrom(datamodel.pat.getPh());
+              List valList = getAbnAbgListfrom(
+                age: datamodel.pat.getAge(),
+                alb: datamodel.pat.getAlb(),
+                bi: datamodel.pat.getBi(),
+                cl: datamodel.pat.getCl(),
+                co2: datamodel.pat.getCo2(),
+                fio: datamodel.pat.getFio(),
+                na: datamodel.pat.getNa(),
+                pao: datamodel.pat.getPao(),
+                ph: datamodel.pat.getPh(),
+                sao: datamodel.pat.getSao(),
+                spo: datamodel.pat.getSpo()
 
-          //     );
-          //     // datamodel.pat.setAbgList(valList);
-          //     datamodel.pat.setAbgList(valList);
-          //     datamodel.pat.setNavAbglist(valList);
-          //     datamodel.pat.getGfr();
-          //     // var nv = datamodel.pat.getAbgList()[3].toString();  
-          //       print('${datamodel.pat.getNavAbglist()}');
-          //       print('${datamodel.pat.getAbgList()}');
-          //           // Navigator.pushNamed(context, '/sec');
-          //           Navigator.pushNamed(context, '/${datamodel.pat.getNavAbglist()[0]}');
+              );
+              // datamodel.pat.setAbgList(valList);
+              datamodel.pat.setAbgList(valList);
+              datamodel.pat.setNavAbglist(valList);
+              datamodel.pat.getGfr();
+              // var nv = datamodel.pat.getAbgList()[3].toString();  
+                print('${datamodel.pat.getNavAbglist()}');
+                print('${datamodel.pat.getAbgList()}');
+                    // Navigator.pushNamed(context, '/sec');
+                    Navigator.pushNamed(context, '/${datamodel.pat.getNavAbglist()[0]}');
 
-          //     }
-          //   },
-          // ),
+              }
+            },
+          ),
         
       ),
             
