@@ -24,26 +24,16 @@ class RespAcid extends StatelessWidget {
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasHistOfRespDepDrugsIntake(),
              ),   
-              QuestionCard(
-               Question: "Has the patient had an Acute Brain Injury or Stroke?",
-               handleQ: (val)=>datamodel.sethasAcuteBrainInjuryOrStroke(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasAcuteBrainInjuryOrStroke(),
-             ),
 
-                QuestionCard(
-               Question: "Does the patient have COPD?",
-               handleQ: (val)=>datamodel.sethasCopd(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasCopd(),
-             ),
+             QuestionCard(
+              Question: "Has the patient had an Acute Brain Injury or Stroke?",
+              handleQ: (val)=>datamodel.sethasAcuteBrainInjuryOrStroke(val),
+              QuestionFontsize: 20.0,
+              qValue: datamodel.pat.gethasAcuteBrainInjuryOrStroke(),
+            ),
+            
 
-                QuestionCard(
-               Question: "Does the Patient have Asthma?",
-               handleQ: (val)=>datamodel.sethasAsthma(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasAsthma(),
-             ),
+              
 
                QuestionCard(
                Question: "Is the Patient on Parentral or NG fed nutritional support?",

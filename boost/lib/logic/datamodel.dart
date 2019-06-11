@@ -306,6 +306,20 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasImpSpoWithO2(bool val){
+    pat._hasImpSpoWithO2 = val;
+    notifyListeners();
+  }
+
+  sethasHadLargePleuralDrainage(bool val){
+    pat._hasHadLargePleuralDrainage = val;
+    notifyListeners();
+  }
+
+  sethasLungCollapseFor3d(bool val){
+    pat._hasLungCollapseFor3d = val;
+    notifyListeners();
+  }
 
 
 
@@ -380,7 +394,10 @@ class PatientDataType{
   _hasCopd,
   _hasAsthma,
   _isTakingTpn,
-  _hasHistOfAcuteSeizure;
+  _hasHistOfAcuteSeizure,
+  _hasImpSpoWithO2,
+  _hasHadLargePleuralDrainage,
+  _hasLungCollapseFor3d;
 
 
   
@@ -523,6 +540,9 @@ class PatientDataType{
   gethasHistOfAcuteSeizure()=>_hasHistOfAcuteSeizure;
 
 
+  gethasImpSpoWithO2()=>_hasImpSpoWithO2;
+  gethasHadLargePleuralDrainage()=>_hasHadLargePleuralDrainage;
+  gethasLungCollapseFor3d()=>_hasLungCollapseFor3d;
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

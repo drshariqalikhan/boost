@@ -1,3 +1,4 @@
+import 'package:boost/components/QuestionCard.dart';
 import 'package:boost/logic/datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,26 @@ class RespAlk extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(this.toString()),),
-      body: Center(child: Text(datamodel.pat.getAbgList().toString()),),
+      // body: Center(child: Text(datamodel.pat.getAbgList().toString()),),
+      
+      body:Container(
+       child: SingleChildScrollView(
+         scrollDirection: Axis.vertical,
+         child: Column(
+           children: <Widget>[
+              QuestionCard(
+              Question: "Has the patient had an Acute Brain Injury or Stroke?",
+              handleQ: (val)=>datamodel.sethasAcuteBrainInjuryOrStroke(val),
+              QuestionFontsize: 20.0,
+              qValue: datamodel.pat.gethasAcuteBrainInjuryOrStroke(),
+            ),
+            
+
+            ])
+           )
+           ),
+      
+      
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           if(datamodel.pat.getNavAbglist().length>0){

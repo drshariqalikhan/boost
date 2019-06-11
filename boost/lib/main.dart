@@ -284,6 +284,14 @@ class Home extends StatelessWidget {
                         QuestionFontsize: 20.0,
                         qValue: datamodel.pat.gethasMalig(),
                       ),
+                      
+                      QuestionCard(
+                      Question: "Does the Patient have CHF or IHD?",             
+                      handleQ: (val)=>datamodel.sethasHistOfCHFIHD(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasHistOfCHFIHD(),
+                      ),
+
 
                       
                       QuestionCard(
@@ -293,7 +301,48 @@ class Home extends StatelessWidget {
                       qValue: datamodel.pat.gethasAcuteGiFluidLoss(),
                       ),
 
+                      QuestionCard(
+                      Question: "Does the patient have COPD?",
+                      handleQ: (val)=>datamodel.sethasCopd(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasCopd(),
+                    ),
+
+                        QuestionCard(
+                      Question: "Does the Patient have Asthma?",
+                      handleQ: (val)=>datamodel.sethasAsthma(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasAsthma(),
+                    ),
+
                    
+              QuestionCard(
+               Question: "Does the Patient have H/o DVT or PE?",             
+               handleQ: (val)=>datamodel.sethasHistOfDVTPE(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfDVTPE(),
+               ),
+
+              QuestionCard(
+               Question: "Has the patient has any recent (<1mo) surgery or lower limb fracture?",             
+               handleQ: (val)=>datamodel.sethasHistOfRecentSxOrFrac(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasHistOfRecentSxOrFrac(),
+               ),
+
+              QuestionCard(
+               Question: "Does the patient have U/L lower limb pain?",             
+               handleQ: (val)=>datamodel.sethasUlLLPain(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasUlLLPain(),
+               ), 
+
+               QuestionCard(
+               Question: "Does the patient have pain on pressing the calves?",             
+               handleQ: (val)=>datamodel.sethasCalfTenderness(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.gethasCalfTenderness(),
+               ),
                   ],
                 ),
             ),
