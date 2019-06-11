@@ -321,7 +321,10 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
-
+  sethasLowTidalVol(bool val){
+    pat._hasLowTidalVol = val;
+    notifyListeners();
+  }
 
 
   initList(){
@@ -397,7 +400,8 @@ class PatientDataType{
   _hasHistOfAcuteSeizure,
   _hasImpSpoWithO2,
   _hasHadLargePleuralDrainage,
-  _hasLungCollapseFor3d;
+  _hasLungCollapseFor3d,
+  _hasLowTidalVol;
 
 
   
@@ -543,6 +547,9 @@ class PatientDataType{
   gethasImpSpoWithO2()=>_hasImpSpoWithO2;
   gethasHadLargePleuralDrainage()=>_hasHadLargePleuralDrainage;
   gethasLungCollapseFor3d()=>_hasLungCollapseFor3d;
+  gethasLowTidalVol()=>_hasLowTidalVol;
+
+
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;

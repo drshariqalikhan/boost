@@ -6,6 +6,7 @@ import 'package:boost/AbnAbgPages/Nagma.dart';
 import 'package:boost/AbnAbgPages/NormalAa.dart';
 import 'package:boost/AbnAbgPages/RespAcid.dart';
 import 'package:boost/AbnAbgPages/RespAlk.dart';
+import 'package:boost/Result.dart';
 import 'package:boost/components/QuestionCard.dart';
 import 'package:boost/logic/datamodel.dart';
 import 'package:flutter/material.dart';
@@ -558,24 +559,24 @@ if(cag>11){
 }
 
 
-class Results extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-     final datamodel = Provider.of<DataModel>(context);
-     List a = datamodel.pat.getAbgList();
-    return Scaffold(
-      appBar: AppBar(title:Text(this.toString())),
-      // body: Text('${a.length}'),
-      // body:Text(datamodel.pat.getAge().toString()),
-      body: Center(child: Text(datamodel.pat.getAbgList().toString())),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          datamodel.initList();
-          Navigator.pushNamed(context, '/home');
-        },
-      ),
+// class Results extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//      final datamodel = Provider.of<DataModel>(context);
+//      List a = datamodel.pat.getAbgList();
+//     return Scaffold(
+//       appBar: AppBar(title:Text(this.toString())),
+//       // body: Text('${a.length}'),
+//       // body:Text(datamodel.pat.getAge().toString()),
+//       body: Center(child: Text(datamodel.pat.getAbgList().toString())),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: (){
+//           datamodel.initList();
+//           Navigator.pushNamed(context, '/home');
+//         },
+//       ),
       
-    );
-  }
-}
+//     );
+//   }
+// }
 
