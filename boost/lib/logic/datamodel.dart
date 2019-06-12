@@ -650,6 +650,7 @@ bool hasAnaphylaxis(){
   }
 }
 
+//LRTI
 bool hasLRTI(){
   int count = 0;
   if(_rr>15){count++;}
@@ -664,6 +665,21 @@ bool hasLRTI(){
     return false;
   }
 
+}
+
+//Adrenal insuff
+bool hasAdrenalInsuff(){
+  double count = 0;
+  if(_isTakingSteroids){count = count+1.1;}
+  if(_hasPitPathology){count = count +1.1;}
+  if(_hasSkinPigmentPatch){count = count +1;}
+  if(_hasAbdominalPain){count = count +0.5;}
+
+  if(count >1){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 }

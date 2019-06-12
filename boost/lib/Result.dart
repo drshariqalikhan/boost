@@ -34,7 +34,11 @@ class Results extends StatelessWidget {
         if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && pt.gethasAcuteBurns()==true){
           outlist.add('Burnshock');
         }
-        // Adr-shoc
+        // AdrenalFailureshock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true & pt.hasAdrenalInsuff()){
+          outlist.add('AdrenalFailureshock');
+        }
+
         // Panc-shoc
         // Septicshock
         List suspectedInfectionSourceList = pt.getsuspectedInfSourceList();
