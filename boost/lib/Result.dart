@@ -39,7 +39,7 @@ class Results extends StatelessWidget {
         // Septicshock
         List suspectedInfectionSourceList = pt.getsuspectedInfSourceList();
         if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && suspectedInfectionSourceList.isNotEmpty){
-           outlist.add('Septicshock due to possible ${suspectedInfectionSourceList.toString()}'); 
+           outlist.add('Septicshock'); 
         }
         // Card-shoc
         // PneuShoc
