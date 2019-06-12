@@ -599,5 +599,44 @@ class PatientDataType{
     return result;
     }
 
+//Global perf
+bool isGlobalPerfLow(){
+  if(_sbp<95 || gethasPressorSupport()==true){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+//SIRS
+bool hasSIRS(){
+  int count = 0;
+
+  if(_temp>38 ||_temp<36 ){ count++;}
+  if(_rr>20 || _co2<32){count++;}
+  if (_wcc>12 || _wcc <4){count++;}
+  if(_hr>90){count++;}
+
+  if(count>=2){
+    return true;
+  }else{
+    return false;
+  }
+  
+
+}
+//Anaphylaxis
+bool hasAnaphylaxis(){
+  int count = 0;
+  if(_hasAcuteOnsetOfSymptoms){count++;}
+  if(_hasPrimarySignsOfAllergicRxn){count++;}
+  if(_hasDyspnoea || _hasRhonchi){count++;}
+
+  if(count>2){
+    return true;
+  }else{
+    return false;
+  }
+}
 
 }

@@ -20,8 +20,16 @@ class Results extends StatelessWidget {
           outlist.add('DiabeticKetoAcidosis');
         }
 
-        // Neu-shoc
-        // Ana-shoc
+        // NeurogenicShock
+        if(pt.isGlobalPerfLow()==true && pt.hasSIRS()==true && pt.gethasSpinalInjury()==true){
+          outlist.add('NeurogenicShock');
+        }
+
+        // Anaphylacticshock
+        if(pt.isGlobalPerfLow()==true && pt.hasSIRS()==true && pt.hasAnaphylaxis()==true) {
+          outlist.add('Anaphylacticshock');
+        }
+
         // Burn-shoc
         // Adr-shoc
         // Panc-shoc
