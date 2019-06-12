@@ -109,7 +109,7 @@ class Hagma extends StatelessWidget {
              ),
 
               QuestionCard(
-               Question: "Does the patient have absent bowel sounds or abdominal pain?",
+               Question: "Does the patient have absent bowel sounds or abdominal pain/guarding?",
                handleQ: (val)=>datamodel.sethasSignsOfPeritonitis(val),
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasSignsOfPeritonitis(),
@@ -124,7 +124,7 @@ class Hagma extends StatelessWidget {
                //fever from earlier 
 
                QuestionCard(
-               Question: "Is there any of the following: Neck Rigidity,post-Neuro-ENT surgery, with indewlling CNS cathetar or intruments, Seizure, Acute Altered Mental state?",             
+               Question: "Is there any two of the following: Neck Rigidity,post-Neuro-ENT surgery, with indewlling CNS cathetar or intruments, Seizure, Acute Altered Mental state?",             
                handleQ: (val)=>datamodel.sethasSignsOfCNSInfec(val),
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasSignsOfCNSInfec(),

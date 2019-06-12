@@ -21,19 +21,26 @@ class Results extends StatelessWidget {
         }
 
         // NeurogenicShock
-        if(pt.isGlobalPerfLow()==true && pt.hasSIRS()==true && pt.gethasSpinalInjury()==true){
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && pt.gethasSpinalInjury()==true){
           outlist.add('NeurogenicShock');
         }
 
         // Anaphylacticshock
-        if(pt.isGlobalPerfLow()==true && pt.hasSIRS()==true && pt.hasAnaphylaxis()==true) {
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && pt.hasAnaphylaxis()==true) {
           outlist.add('Anaphylacticshock');
         }
 
-        // Burn-shoc
+        // Burnshock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && pt.gethasAcuteBurns()==true){
+          outlist.add('Burnshock');
+        }
         // Adr-shoc
         // Panc-shoc
-        // Sept-shoc
+        // Septicshock
+        List suspectedInfectionSourceList = pt.getsuspectedInfSourceList();
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && suspectedInfectionSourceList.isNotEmpty){
+           outlist.add('Septicshock due to possible ${suspectedInfectionSourceList.toString()}'); 
+        }
         // Card-shoc
         // PneuShoc
         // PeriTamSk

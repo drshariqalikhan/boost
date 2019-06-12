@@ -342,7 +342,7 @@ class DataModel with ChangeNotifier{
 }
 
 class PatientDataType{
-  List suspectedDsList;
+  List suspectedDsList,suspectedInfSourceList;
   double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu,_wcc,_cr;
   bool
   _isMale,
@@ -557,6 +557,17 @@ class PatientDataType{
 
 
   getsuspectedDsList()=>suspectedDsList;  
+  getsuspectedInfSourceList(){
+    suspectedInfSourceList = [];
+    if(hasLRTI()){suspectedInfSourceList.add('LRTI');}
+    if(_hasSTI){suspectedInfSourceList.add('STI');}
+    if(_hasUTIonDipstick){suspectedInfSourceList.add('UTI');}
+    if(_hasSignsOfCNSInfec){suspectedInfSourceList.add('CNS infection');} 
+    if(_hasRiskOfIe){suspectedInfSourceList.add('IE Bacteremia')}
+    if(_hasSignsOfCLABSI){suspectedInfSourceList.add('CLABSI');}
+    if(_hasSignsOfPeritonitis){suspectedInfSourceList.add('Peritonitis');}   
+    return suspectedInfSourceList;
+  }
 
   getNavAbglist()=>_navAbgList;
   setNavAbglist(List vallist)=> _navAbgList=vallist;
@@ -600,7 +611,7 @@ class PatientDataType{
     }
 
 //Global perf
-bool isGlobalPerfLow(){
+bool hasLowGlobalPerf(){
   if(_sbp<95 || gethasPressorSupport()==true){
     return true;
   }else{
@@ -637,6 +648,22 @@ bool hasAnaphylaxis(){
   }else{
     return false;
   }
+}
+
+bool hasLRTI(){
+  int count = 0;
+  if(_rr>15){count++;}
+  if(_temp>38){count++;}
+  if(_hasCough){count++;}
+  if(_hasDyspnoea){count++;}
+  if(_hasBLCrepts||_hasULCrepts||_hasRhonchi){count++;}
+
+  if(count>2){
+    return true;
+  }else{
+    return false;
+  }
+
 }
 
 }
