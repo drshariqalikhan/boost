@@ -728,13 +728,13 @@ bool hasPneumothorax(){
 //Pericard Tamponade
 bool hasPeriCardTamponade(){
   double count = 0;
-  if(_hasDyspnoea){count++;}
-  if(_hr>90){count++;}
+  if(_hasDyspnoea){count=count+1;}
+  if(_hr>90){count=count+1;}
   if(_hasChestPain){count = count+0.5;}
   if(_hasAcuteOnsetOfSymptoms){count = count+2;}
   if(_hasPulsusParadoxus){count = count + 2;}
   if(_hasMalig){count = count+ 2;}
-  if(_hasRecentRadioTx){count++;}
+  if(_hasRecentRadioTx){count=count+1;}
   if(_hasTB){count = count+2;}
   if(_hasHistOfPericardEff){count = count+2;}
 
@@ -747,7 +747,7 @@ bool hasPeriCardTamponade(){
 
 bool hasHighPeRisk(){
   int count = 0;
-  if(_age>65){count++;}
+  if(_age>65){count=count+1;}
   if(_hasHistOfDVTPE){count = count +3;}
   if(_hasHistOfRecentSxOrFrac){count = count +2;}
   if(_hasMalig){count = count +2;}

@@ -65,12 +65,25 @@ class Results extends StatelessWidget {
           outlist.add('PulmEmbolism');
         }
         //HypovolumicShock
+        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
+          outlist.add('HypovolumicShock');
+        }
 
         //HemorrhagicShock
+        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteHemorrghe()){
+          outlist.add('HemorrhagicShock');
+        }
 
+        // RenalFailureHighAGMetabolicAcidosis
+        if(pt.getGfr()<40 && pt.getAnionGap()>20){
+          outlist.add('RenalFailureHighAGMetabolicAcidosis');
+        }  
 
-        // RF hagma
-        // Txn Alc
+        // ToxinAlcoholHighAGMetabolicAcidosis
+        if(pt.gethasHistOfToxinAlcholIntake()){
+          outlist.add('ToxinAlcoholHighAGMetabolicAcidosis');
+        }
+
         // JJ Byp
         // Chr Parac
 
