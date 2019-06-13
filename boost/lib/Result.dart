@@ -60,10 +60,13 @@ class Results extends StatelessWidget {
         if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==false && pt.getisJVPHi()==true && pt.hasPeriCardTamponade()==true){
           outlist.add('PericardialTamponadeShock');
         }
-        //PE
-        // Hypv-shoc
+        //PulmEmbolism
+        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && pt.getisJVPHi() && pt.hasHighPeRisk()){
+          outlist.add('PulmEmbolism');
+        }
+        //HypovolumicShock
 
-
+        //HemorrhagicShock
 
 
         // RF hagma

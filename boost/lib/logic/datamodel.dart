@@ -744,4 +744,23 @@ bool hasPeriCardTamponade(){
     return false;
   }
 }
+
+bool hasHighPeRisk(){
+  int count = 0;
+  if(_age>65){count++;}
+  if(_hasHistOfDVTPE){count = count +3;}
+  if(_hasHistOfRecentSxOrFrac){count = count +2;}
+  if(_hasMalig){count = count +2;}
+  if(_hasUlLLPain){count = count+3;}
+  if(_hasHemoptysis){count = count +2;}
+  if(_hr>94){count = count+5;}
+  if(_hr>74 && _hr<95){count = count+3;}
+  if(_hasCalfTenderness){count = count+4;}
+
+  if(count>10){
+    return true;
+  }else{
+    return false;
+  }
+}
 }
