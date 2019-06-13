@@ -143,16 +143,48 @@ class Results extends StatelessWidget {
       
     }
       if(abgList.contains('MetabAlk')){
-        // Vom/NgAsp MetabAlk
-        // Diuertic Use MetabAlk
-        // Barter Giltmen 
-        // Pri Aldosteronism
-        // Sec Aldosteronism
-        // Cushing Synd
-        // Liddle Synd
-        // Exogenous Licorice
+        // GiLossMetabolicAlkalosis
+        if(pt.gethasLowJvpOrNegBal() && pt.gethasXsVomitNgLoss()){
+          outlist.add('GiLossMetabolicAlkalosis');
+        }  
+
+        // DiuerticUseMetabolicAlkalosis
+        if(pt.gethasLowJvpOrNegBal() && pt.getisTakingDiuretics()){
+          outlist.add('DiuerticUseMetabolicAlkalosis');
+        }
+        
+        // BarterGiltmen 
+        if(pt.gethasLowJvpOrNegBal() && !pt.gethasXsVomitNgLoss() && !pt.getisTakingDiuretics()){
+          outlist.add('BarterGiltmen');
+        }
+        // PrimaryAldosteronism
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('PrimaryAldosteronism');
+        }
+        // SecondaryAldosteronism
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('SecondaryAldosteronism');
+        }
+        // CushingSyndrome
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('CushingSyndrome');
+        }
+        // LiddleSyndrome
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('LiddleSyndrome');
+        }
+        // ExogenousLicorice
+         if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100) && pt.getisTakingLicorice()){
+            outlist.add('ExogenousLicorice');
+        }
         // Hypokalemia
-        // Milk alkali synd
+        if(!pt.gethasLowJvpOrNegBal() && !(pt.getSbp()>160 || pt.getDbp()>100) && pt.getK()<3.5){
+            outlist.add('Hypokalemia');
+        }
+        // MilkAlkaliSyndrome
+        if(!pt.gethasLowJvpOrNegBal() && !(pt.getSbp()>160 || pt.getDbp()>100) && pt.getisTakingCaSuppl()  ){
+            outlist.add('MilkAlkaliSyndrome');
+        }
 
       
     }
