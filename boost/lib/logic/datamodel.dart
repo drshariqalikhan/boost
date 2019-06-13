@@ -562,8 +562,8 @@ class PatientDataType{
     if(hasLRTI()){suspectedInfSourceList.add('LRTI');}
     if(_hasSTI){suspectedInfSourceList.add('STI');}
     if(_hasUTIonDipstick){suspectedInfSourceList.add('UTI');}
-    if(_hasSignsOfCNSInfec){suspectedInfSourceList.add('CNS infection');} 
-    if(_hasRiskOfIe){suspectedInfSourceList.add('IE Bacteremia')}
+    if(_hasSignsOfCNSInfec){suspectedInfSourceList.add('CNSinfection');} 
+    if(_hasRiskOfIe){suspectedInfSourceList.add('IEBacteremia')}
     if(_hasSignsOfCLABSI){suspectedInfSourceList.add('CLABSI');}
     if(_hasSignsOfPeritonitis){suspectedInfSourceList.add('Peritonitis');}   
     return suspectedInfSourceList;
@@ -696,7 +696,7 @@ bool hasPancreatitis(){
   }
 
 }
-
+//CHF IHD risk
 bool hasChfOrIhdRisk(){
   int count = 0;
   if(_hasHistOfCHFIHD){count++;}
@@ -711,6 +711,7 @@ bool hasChfOrIhdRisk(){
   }
 }
 
+//Pnuemothx
 bool hasPneumothorax(){
   int count = 0;
   if(_hasChestPain){count++;}
@@ -719,6 +720,25 @@ bool hasPneumothorax(){
   if(_hasBLBreathSounds==false){count++;}
 
   if(count>1){
+    return true;
+  }else{
+    return false;
+  }
+}
+//Pericard Tamponade
+bool hasPeriCardTamponade(){
+  double count = 0;
+  if(_hasDyspnoea){count++;}
+  if(_hr>90){count++;}
+  if(_hasChestPain){count = count+0.5;}
+  if(_hasAcuteOnsetOfSymptoms){count = count+2;}
+  if(_hasPulsusParadoxus){count = count + 2;}
+  if(_hasMalig){count = count+ 2;}
+  if(_hasRecentRadioTx){count++;}
+  if(_hasTB){count = count+2;}
+  if(_hasHistOfPericardEff){count = count+2;}
+
+  if(count>6){
     return true;
   }else{
     return false;

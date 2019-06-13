@@ -56,9 +56,11 @@ class Results extends StatelessWidget {
         if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==false && pt.getisJVPHi()==true && pt.hasPneumothorax()==true){
           outlist.add('PneumothoraxShock');
         }
-        // PeriTamSk
-        // PE
-        // Hrrg-shock
+        // PericardialTamponadeShock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==false && pt.getisJVPHi()==true && pt.hasPeriCardTamponade()==true){
+          outlist.add('PericardialTamponadeShock');
+        }
+        //PE
         // Hypv-shoc
 
 
