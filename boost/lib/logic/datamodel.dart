@@ -682,4 +682,46 @@ bool hasAdrenalInsuff(){
   }
 }
 
+//Pancreatitis
+bool hasPancreatitis(){
+  int count = 0;
+  if(_hasGallStoneOrPancSx){count++;}
+  if(_hasAlcoholHistory){count++;}
+  if(_hasAbdominalTrauma){count++;}
+
+  if(count>1 && _hasAbdominalPain){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+bool hasChfOrIhdRisk(){
+  int count = 0;
+  if(_hasHistOfCHFIHD){count++;}
+  if(_hasChestPain){count++;}
+  if(_hasDyspnoea){count++;}
+  if(_hasBLCrepts){count++;}
+
+  if(count>=1){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+bool hasPneumothorax(){
+  int count = 0;
+  if(_hasChestPain){count++;}
+  if(_hasDyspnoea){count++;}
+  if(_hasSharpOrBluntChestTrauma){count++;}
+  if(_hasBLBreathSounds==false){count++;}
+
+  if(count>1){
+    return true;
+  }else{
+    return false;
+  }
+}
 }

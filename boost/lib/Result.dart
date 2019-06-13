@@ -39,14 +39,23 @@ class Results extends StatelessWidget {
           outlist.add('AdrenalFailureshock');
         }
 
-        // Panc-shoc
+        // PancreaticShock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true &&   pt.hasPancreatitis() == true){
+          outlist.add('PancreaticShock');
+        }
         // Septicshock
         List suspectedInfectionSourceList = pt.getsuspectedInfSourceList();
         if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && suspectedInfectionSourceList.isNotEmpty){
            outlist.add('Septicshock'); 
         }
-        // Card-shoc
-        // PneuShoc
+        // Cardiogencshock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()== false && pt.getisJVPHi()==true && pt.hasChfOrIhdRisk()==true ){
+          outlist.add('Cardiogencshock');
+        }
+        // PneumothoraxShock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==false && pt.getisJVPHi()==true && pt.hasPneumothorax()==true){
+          outlist.add('PneumothoraxShock');
+        }
         // PeriTamSk
         // PE
         // Hrrg-shock
