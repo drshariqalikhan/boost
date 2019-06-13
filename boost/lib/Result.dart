@@ -128,8 +128,17 @@ class Results extends StatelessWidget {
       if(abgList.contains('RespAlk')){
 
         // Hypoxemia
-        // PE -RespAlk
-        // Neuo-RespAlk
+        if(pt.pFRatio()<350){
+          outlist.add('Hypoxemia');
+        }
+        // PulmEmbolism
+        if(pt.hasHighPeRisk()){
+          outlist.add('PulmEmbolism');
+        }
+        // BrainInjury
+        if(pt.gethasAcuteBrainInjuryOrStroke()){
+          outlist.add('BrainInjury');
+        }
 
       
     }

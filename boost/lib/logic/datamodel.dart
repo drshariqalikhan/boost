@@ -767,4 +767,6 @@ bool hasHighPeRisk(){
     return false;
   }
 }
+
+double pFRatio()=>_pao/_fio;
 }
