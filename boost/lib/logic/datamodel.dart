@@ -343,7 +343,7 @@ class DataModel with ChangeNotifier{
 
 class PatientDataType{
   List suspectedDsList,suspectedInfSourceList;
-  double _age,_ph,_co2,_bi,_na,_cl,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu,_wcc,_cr;
+  double _age,_ph,_co2,_bi,_na,_cl,_k,_alb,_pao,_spo,_sao,_fio,_wt,_ht,_sbp,_dbp,_hr,_rr,_temp,_glu,_wcc,_cr;
   bool
   _isMale,
   _isBlack, 
@@ -425,6 +425,10 @@ class PatientDataType{
 
   getBi()=>_bi;
   setBi(double val)=> _bi=val;
+
+  getK()=>_k;
+  setK(double val)=> _k=val;
+
 
   getNa()=>_na;
   setNa(double val)=> _na=val;

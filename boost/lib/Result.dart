@@ -74,9 +74,9 @@ class Results extends StatelessWidget {
           outlist.add('HemorrhagicShock');
         }
 
-        // RenalFailureHighAGMetabolicAcidosis
+        // RenalFailureMetabolicAcidosis
         if(pt.getGfr()<40 && pt.getAnionGap()>20){
-          outlist.add('RenalFailureHighAGMetabolicAcidosis');
+          outlist.add('RenalFailureMetabolicAcidosis');
         }  
 
         // ToxinAlcoholHighAGMetabolicAcidosis
@@ -84,18 +84,45 @@ class Results extends StatelessWidget {
           outlist.add('ToxinAlcoholHighAGMetabolicAcidosis');
         }
 
-        // JJ Byp
-        // Chr Parac
+        //SmallBowelBypassHighAGMetabolicAcidosis
+        if(pt.gethasHistOfSbBypass()){
+          outlist.add('SmallBowelBypassHighAGMetabolicAcidosis');
+
+        }
+        // ChronicParacetMetabolicAcidosis
+        if(pt.gethasHistOfChronParacet()){
+          outlist.add('ChronicParacetMetabolicAcidosis');
+        }
 
       
     }
       if(abgList.contains('Nagma')){
-        // Nacl Nagma
-        // RF nagma
-        // HypK nagma
-        // RTA 4
-        // Gi nagma
-        // RTA nagma
+        // NormalSalineMetabolicAcidosis
+        if(pt.gethasHistOfXsNacl()){
+          outlist.add('NormalSalineMetabolicAcidosis');
+        }
+        // RenalFailureMetabolicAcidosis
+        if(pt.getGfr()<40){
+          outlist.add('RenalFailureMetabolicAcidosis');
+        }
+        // HyperKalemiaMetabolicAcidosis
+        if(pt.getK()>7){
+          outlist.add('HyperKalemiaMetabolicAcidosis');
+        }
+        // RenalTubularAcidosis4
+        if(pt.getK()>5.5 && pt.getK()<6.9){
+          outlist.add('RenalTubularAcidosis4');
+        }
+        // GiGuBaseLossMetabolicAcidosis
+        if(pt.gethasHistOfLaxUrndivOrDiarr()){
+          outlist.add('GiGuBaseLossMetabolicAcidosis');
+        }
+        //RenalTubularAcidosis
+
+        if(!pt.gethasHistOfXsNacl() && pt.getGfr()>40 && pt.getK()<5.5 && !pt.gethasHistOfLaxUrndivOrDiarr()){
+          outlist.add('RenalTubularAcidosis');
+        }
+        
 
     }
       if(abgList.contains('RespAlk')){

@@ -90,6 +90,13 @@ class Home extends StatelessWidget {
                             ),   
                       ), 
                       ListTile(
+                        leading: CircleAvatar(child: Text('k'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'k'),
+                            onChanged: (v)=>datamodel.pat.setK(double.tryParse(v)),
+                              ),   
+                      ), 
+                      ListTile(
                         leading: CircleAvatar(child: Text('na'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'na'),
