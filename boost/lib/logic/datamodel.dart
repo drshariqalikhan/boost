@@ -769,4 +769,14 @@ bool hasHighPeRisk(){
 }
 
 double pFRatio()=>_pao/_fio;
+
+bool hasChronicRespiratoryAcidosis(){
+  if(_bi>26){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+double bmi()=>_wt/(_ht*_ht);
 }

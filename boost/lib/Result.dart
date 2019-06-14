@@ -135,9 +135,9 @@ class Results extends StatelessWidget {
         if(pt.hasHighPeRisk()){
           outlist.add('PulmEmbolism');
         }
-        // BrainInjury
+        // CnsEtiology
         if(pt.gethasAcuteBrainInjuryOrStroke()){
-          outlist.add('BrainInjury');
+          outlist.add('CnsEtiology');
         }
 
       
@@ -189,25 +189,66 @@ class Results extends StatelessWidget {
       
     }
       if(abgList.contains('RespAcid')){
-        // Drug-respAcid
-        // Neur-respAcid
-        // Severe-LRTI
-        // Mod -LRTI
-        // ALI
+        // DrugInducedRespiratoryAcidosis
+        if(pt.getRr()<10 && pt.gethasHistOfRespDepDrugsIntake()){
+          outlist.add('DrugInducedRespiratoryAcidosis');
+        }
+        // CnsEtiology
+        if(pt.getRr()<10 && !pt.gethasHistOfRespDepDrugsIntake() && pt.gethasAcuteBrainInjuryOrStroke()){
+           outlist.add('CnsEtiology'); 
+        }
+        // SevereLRTI
+        if(pt.pFRatio()<200 && pt.pFRatio()<350 && pt.hasLRTI()){
+          outlist.add('SevereLRTI');
+        }
+        // ModerateLRTI
+        if(pt.pFRatio()<350 && pt.hasLRTI()){
+          outlist.add('ModerateLRTI');
+        }
+        // AcuteLungInjury
+        if(pt.pFRatio()<200){
+          outlist.add('AcuteLungInjury');
+        }
         // COPD
-        // OHS
-        // Asthma attack
-        // Hyperalimentation
-        // Seizures
+        if(pt.gethasCopd() && pt.hasChronicRespiratoryAcidosis()){
+          outlist.add('COPD');
+        }
+        // ObesityHypoventilationSyndrome
+        if(pt.hasChronicRespiratoryAcidosis() && pt.bmi()>30){
+          outlist.add('ObesityHypoventilationSyndrome');
+        }
+        // AcuteAsthma
+        if(!pt.hasChronicRespiratoryAcidosis() && (pt.gethasAsthma()|| pt.gethasRhonchi() )){
+          outlist.add('AcuteAsthma');
+        }
+        // HyperalimentationRespiratoryAcidosis
+        if(!pt.hasChronicRespiratoryAcidosis() && pt.getisTakingTpn()){
+          outlist.add('HyperalimentationRespiratoryAcidosis');
+        }
+        // SeizuresInducedRespiratoryAcidosis
+        if(!pt.hasChronicRespiratoryAcidosis() && pt.gethasHistOfAcuteSeizure()){
+          outlist.add('SeizuresInducedRespiratoryAcidosis');
+        }
+
 
       
     }
       if(abgList.contains('HighAa')){
 
-        // Cardiac shunt
-        // PE
-        // Asthma
+        // CardiacShunt
+        if(!pt.gethasImpSpoWithO2()){
+          outlist.add('CardiacShunt');
+        }
+        // PulmEmbolism
+        if(pt.gethasImpSpoWithO2() && pt.hasHighPeRisk() ){
+          outlist.add('PulmEmbolism');
+        }
+        // AcuteAsthma
+        if(pt.gethasImpSpoWithO2() && pt.gethasAsthma() ){
+          outlist.add('AcuteAsthma');
+        }
         // COPD
+        
         // LRTI
         // Atelectasis
         // Pulm infarct
