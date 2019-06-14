@@ -202,7 +202,7 @@ class Results extends StatelessWidget {
           outlist.add('SevereLRTI');
         }
         // ModerateLRTI
-        if(pt.pFRatio()<350 && pt.hasLRTI()){
+        if(pt.pFRatio()<350 && pt.hasLRTI() && pt.pFRatio()>350){
           outlist.add('ModerateLRTI');
         }
         // AcuteLungInjury
@@ -248,18 +248,38 @@ class Results extends StatelessWidget {
           outlist.add('AcuteAsthma');
         }
         // COPD
+        if(pt.gethasImpSpoWithO2() && pt.gethasCopd()){
+          outlist.add('COPD');
+        }
         
-        // LRTI
+        // ModerateLRTI
+        if(pt.gethasImpSpoWithO2() && pt.hasLRTI() && pt.pFRatio()>350){
+          outlist.add('ModerateLRTI');
+        }
+
         // Atelectasis
-        // Pulm infarct
-        // Mucus Plug
-        // Severe LRTI
+        if(pt.gethasImpSpoWithO2() && !pt.hasLRTI()){
+          outlist.add('Atelectasis');
+        }
+        // PulmonaryInfarct
+        if(pt.gethasImpSpoWithO2() && !pt.hasLRTI()){
+          outlist.add('PulmonaryInfarct');
+        }
+        // MucusPlug
+        if(pt.gethasImpSpoWithO2() && !pt.gethasBLBreathSounds()){
+          outlist.add('MucusPlug');
+        }
+
+        // SevereLRTI
+        if(pt.pFRatio()<350 && pt.pFRatio()<200 && pt.gethasImpSpoWithO2() && pt.hasLRTI()){
+          outlist.add('SevereLRTI')
+        }
         // Effusion
         // Re-exp Pulm ed
         // U/L Intubation
         // Pulm Edmea
         // ALI
-        // LRTI
+        // ModerateLRTI
 
       
     }
