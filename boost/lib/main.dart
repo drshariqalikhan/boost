@@ -256,7 +256,7 @@ class Home extends StatelessWidget {
                         qValue: datamodel.pat.gethasDyspnoea(),
                       ),
                           QuestionCard(
-                        Question: "Are there Breath-Sounds on both sides of chest?",
+                        Question: "Are there equal Breath-Sounds on both sides of chest?",
                         handleQ: (val)=>datamodel.sethasBLBreathSounds(val),
                         QuestionFontsize: 20.0,
                         qValue: datamodel.pat.gethasBLBreathSounds(),
@@ -351,6 +351,15 @@ class Home extends StatelessWidget {
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.gethasCalfTenderness(),
                ),
+
+                
+             QuestionCard(
+               Question: "Is the patient Intubated?",             
+               handleQ: (val)=>datamodel.setisIntubated(val),
+               QuestionFontsize: 20.0,
+               qValue: datamodel.pat.getisIntubated(),
+               ),
+
                   ],
                 ),
             ),

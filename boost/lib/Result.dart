@@ -272,11 +272,21 @@ class Results extends StatelessWidget {
 
         // SevereLRTI
         if(pt.pFRatio()<350 && pt.pFRatio()<200 && pt.gethasImpSpoWithO2() && pt.hasLRTI()){
-          outlist.add('SevereLRTI')
+          outlist.add('SevereLRTI');
         }
-        // Effusion
-        // Re-exp Pulm ed
-        // U/L Intubation
+        // PleuralEffusion
+        if(pt.gethasImpSpoWithO2() && !pt.gethasBLBreathSounds() ){
+          outlist.add('PleuralEffusion');
+        }
+        // ReExpansionPulmonaryEdema
+        if(pt.gethasImpSpoWithO2() && pt.hasHighRiskOfRexpPulmEdema() ){
+          outlist.add('ReExpansionPulmonaryEdema');
+        }
+
+        // ULIntubation
+        if(pt.gethasImpSpoWithO2() && pt.getisIntubated() && !pt.gethasBLBreathSounds()){
+          outlist.add('ULIntubation');
+        }
         // Pulm Edmea
         // ALI
         // ModerateLRTI

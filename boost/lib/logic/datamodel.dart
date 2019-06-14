@@ -326,10 +326,18 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  setisIntubated(bool val){
+    pat._isIntubated = val;
+    notifyListeners();
+  }
+
+
   setsuspectedDsList(List mylist){
     pat.suspectedDsList = mylist;
     notifyListeners();
   }
+
+
 
 
   initList(){
@@ -407,7 +415,8 @@ class PatientDataType{
   _hasImpSpoWithO2,
   _hasHadLargePleuralDrainage,
   _hasLungCollapseFor3d,
-  _hasLowTidalVol;
+  _hasLowTidalVol,
+  _isIntubated;
 
 
   
@@ -558,6 +567,7 @@ class PatientDataType{
   gethasHadLargePleuralDrainage()=>_hasHadLargePleuralDrainage;
   gethasLungCollapseFor3d()=>_hasLungCollapseFor3d;
   gethasLowTidalVol()=>_hasLowTidalVol;
+  getisIntubated()=>_isIntubated;
 
 
   getsuspectedDsList()=>suspectedDsList;  
@@ -748,7 +758,7 @@ bool hasPeriCardTamponade(){
     return false;
   }
 }
-
+//PE risk
 bool hasHighPeRisk(){
   int count = 0;
   if(_age>65){count=count+1;}
@@ -768,8 +778,10 @@ bool hasHighPeRisk(){
   }
 }
 
+//PF ratio
 double pFRatio()=>_pao/_fio;
 
+//Chr Resp Acid
 bool hasChronicRespiratoryAcidosis(){
   if(_bi>26){
     return true;
@@ -777,6 +789,15 @@ bool hasChronicRespiratoryAcidosis(){
     return false;
   }
 }
-
+//BMI
 double bmi()=>_wt/(_ht*_ht);
+
+//Exp Plum Ed
+bool hasHighRiskOfRexpPulmEdema(){
+  if(_hasHadLargePleuralDrainage || _hasLungCollapseFor3d){
+    return true;
+  }else{
+    return false;
+  }
+}
 }
