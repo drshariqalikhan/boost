@@ -287,17 +287,34 @@ class Results extends StatelessWidget {
         if(pt.gethasImpSpoWithO2() && pt.getisIntubated() && !pt.gethasBLBreathSounds()){
           outlist.add('ULIntubation');
         }
-        // Pulm Edmea
-        // ALI
-        // ModerateLRTI
-
+        // PulmomaryEdema
+        if(pt.gethasImpSpoWithO2() && pt.gethasBLCrepts() && pt.gethasHistOfCHFIHD()){
+          outlist.add('PulmomaryEdema');
+        }
+        // AcuteLungInjury
+        if(pt.pFRatio()<200){
+          outlist.add('AcuteLungInjury');
+        }
+     
       
     }
     if(abgList.contains('NormalAa')){
-      // COPD excaberation 
-      // Hypovent
-      // MethHb
-      // CarboxyHb
+      // COPD
+      if(pt.getCo2()>45 && pt.gethasCopd()){
+          outlist.add('COPD');
+        }
+      // Hypoventilation
+       if(pt.getCo2()>45 && (pt.getRr()<10|| pt.gethasLowTidalVol()) ){
+          outlist.add('Hypoventilation');
+        }
+      // MethHaemoglobin
+      if(pt.getCo2()<45 && pt.hasSaturationGap() && pt.getSpo()<pt.getSao()){
+        outlist.add('MethHaemoglobin');
+      }
+      // CarboxyHaemoglobin
+       if(pt.getCo2()<45 && pt.hasSaturationGap() && pt.getSpo()>=pt.getSao()){
+        outlist.add('CarboxyHaemoglobin');
+      }
 
       
     }else{
@@ -312,6 +329,7 @@ class Results extends StatelessWidget {
 
     //TODO: implement function to create list of suspected Ds and save to Pat.SuspectedDsList
     datamodel.setsuspectedDsList(createSuspectedDsList(datamodel));  
+    print(createSuspectedDsList(datamodel).toString());
   
   // List a = datamodel.pat.getAbgList();
     return Scaffold(

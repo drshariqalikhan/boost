@@ -800,4 +800,15 @@ bool hasHighRiskOfRexpPulmEdema(){
     return false;
   }
 }
+
+//Saturation Gap
+bool hasSaturationGap(){
+  double absSatGap = _spo - _sao;
+  absSatGap = absSatGap.abs();
+  if(absSatGap>4.9){
+    return true;
+  }else{
+    return false;
+  }
+}
 }
