@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:boost/AbnAbgPages/Hagma.dart';
 import 'package:boost/AbnAbgPages/HighAa.dart';
 import 'package:boost/AbnAbgPages/MetabAlk.dart';
@@ -7,6 +9,8 @@ import 'package:boost/AbnAbgPages/NormalAa.dart';
 import 'package:boost/AbnAbgPages/RespAcid.dart';
 import 'package:boost/AbnAbgPages/RespAlk.dart';
 import 'package:boost/Result.dart';
+import 'package:boost/components/BoostList.dart';
+import 'package:boost/components/Header.dart';
 import 'package:boost/components/QuestionCard.dart';
 import 'package:boost/logic/datamodel.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +36,9 @@ class MyApp extends StatelessWidget {
            ),
           primarySwatch: Colors.blue,
         ),
-        // home: Home(),
-        home: Nagma(),
+        home: Home(),
+        // home: Nagma(),
+        // home: TResults(),
         debugShowCheckedModeBanner: false,
       
           
@@ -67,6 +72,9 @@ class Home extends StatelessWidget {
             child:Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                      Header(
+                        headerText: 'ABG',
+                      ),
                       ListTile(
                         leading: CircleAvatar(child: Text('ph'),),
                         title:TextField(
@@ -89,35 +97,14 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setBi(double.tryParse(v)),
                             ),   
                       ), 
-                      ListTile(
-                        leading: CircleAvatar(child: Text('k'),),
+                        ListTile(
+                        leading: CircleAvatar(child: Text('fio'),),
                         title:TextField(
-                            decoration: new InputDecoration.collapsed(hintText: 'k'),
-                            onChanged: (v)=>datamodel.pat.setK(double.tryParse(v)),
-                              ),   
-                      ), 
-                      ListTile(
-                        leading: CircleAvatar(child: Text('na'),),
-                        title:TextField(
-                            decoration: new InputDecoration.collapsed(hintText: 'na'),
-                            onChanged: (v)=>datamodel.pat.setNa(double.tryParse(v)),
-                              ),   
-                      ), 
-                      ListTile(
-                        leading: CircleAvatar(child: Text('cl'),),
-                        title:TextField(
-                            decoration: new InputDecoration.collapsed(hintText: 'cl'),
-                            onChanged: (v)=>datamodel.pat.setCl(double.tryParse(v)),
+                            decoration: new InputDecoration.collapsed(hintText: 'fio'),
+                            onChanged: (v)=>datamodel.pat.setFio(double.tryParse(v)),
                             ),   
-                      ), 
-                      ListTile(
-                        leading: CircleAvatar(child: Text('alb'),),
-                        title:TextField(
-                            decoration: new InputDecoration.collapsed(hintText: 'alb'),
-                            onChanged: (v)=>datamodel.pat.setAlb(double.tryParse(v)),
-                            ),   
-                      ), 
-                      ListTile(
+                      ),
+                       ListTile(
                         leading: CircleAvatar(child: Text('pao'),),
                         title:TextField(
                             decoration: new InputDecoration.collapsed(hintText: 'pao'),
@@ -138,13 +125,11 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setSao(double.tryParse(v)),
                             ),   
                       ), 
-                      ListTile(
-                        leading: CircleAvatar(child: Text('fio'),),
-                        title:TextField(
-                            decoration: new InputDecoration.collapsed(hintText: 'fio'),
-                            onChanged: (v)=>datamodel.pat.setFio(double.tryParse(v)),
-                            ),   
-                      ),
+                 
+
+                      Header(
+                        headerText: 'Demographics',
+                      ),    
                        ListTile(
                         leading: CircleAvatar(child: Text('age'),),
                         title:TextField(
@@ -152,6 +137,18 @@ class Home extends StatelessWidget {
                             onChanged: (v)=>datamodel.pat.setAge(double.tryParse(v)),
                             ),   
                       ),  
+                       QuestionCard(
+                        Question: "Is the patient a Black?",
+                        handleQ: (val)=>datamodel.setisBlack(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.getisBlack(),
+                      ),
+                       QuestionCard(
+                        Question: "Is the patient a Male?",
+                        handleQ: (val)=>datamodel.setisMale(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.getisMale(),
+                      ),
                        ListTile(
                         leading: CircleAvatar(child: Text('Wt'),),
                         title:TextField(
@@ -165,6 +162,10 @@ class Home extends StatelessWidget {
                             decoration: new InputDecoration.collapsed(hintText: 'Ht'),
                             onChanged: (v)=>datamodel.pat.setHt(double.tryParse(v)),
                             ),   
+                      ),
+
+                      Header(
+                        headerText: 'Vitals',
                       ),
                        ListTile(
                         leading: CircleAvatar(child: Text('SBP'),),
@@ -200,7 +201,39 @@ class Home extends StatelessWidget {
                             decoration: new InputDecoration.collapsed(hintText: 'Temp'),
                             onChanged: (v)=>datamodel.pat.setTemp(double.tryParse(v)),
                             ),   
-                      ),  
+                      ), 
+
+                      Header(
+                        headerText: 'Routine Bloods',
+                      ), 
+                           ListTile(
+                        leading: CircleAvatar(child: Text('k'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'k'),
+                            onChanged: (v)=>datamodel.pat.setK(double.tryParse(v)),
+                              ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('na'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'na'),
+                            onChanged: (v)=>datamodel.pat.setNa(double.tryParse(v)),
+                              ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('cl'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'cl'),
+                            onChanged: (v)=>datamodel.pat.setCl(double.tryParse(v)),
+                            ),   
+                      ), 
+                      ListTile(
+                        leading: CircleAvatar(child: Text('alb'),),
+                        title:TextField(
+                            decoration: new InputDecoration.collapsed(hintText: 'alb'),
+                            onChanged: (v)=>datamodel.pat.setAlb(double.tryParse(v)),
+                            ),   
+                      ), 
                       ListTile(
                         leading: CircleAvatar(child: Text('glu'),),
                         title:TextField(
@@ -218,23 +251,27 @@ class Home extends StatelessWidget {
                        ListTile(
                         leading: CircleAvatar(child: Text('Cr'),),
                         title:TextField(
-                            decoration: new InputDecoration.collapsed(hintText: 'Cr'),
+                            decoration: new InputDecoration.collapsed(hintText: 'Cr(umol/L)'),
                             onChanged: (v)=>datamodel.pat.setCr(double.tryParse(v)),
                             ),   
                       ),
 
-                       QuestionCard(
-                        Question: "Is the patient a Black?",
-                        handleQ: (val)=>datamodel.setisBlack(val),
-                        QuestionFontsize: 20.0,
-                        qValue: datamodel.pat.getisBlack(),
+                      Header(
+                        headerText: 'Airway',
+                      ),      
+                      
+                
+                        QuestionCard(
+                          Question: "Is the patient Intubated?",             
+                          handleQ: (val)=>datamodel.setisIntubated(val),
+                          QuestionFontsize: 20.0,
+                          qValue: datamodel.pat.getisIntubated(),
+                          ),
+
+                      Header(
+                        headerText: 'Breathing',
                       ),
-                       QuestionCard(
-                        Question: "Is the patient a Male?",
-                        handleQ: (val)=>datamodel.setisMale(val),
-                        QuestionFontsize: 20.0,
-                        qValue: datamodel.pat.getisMale(),
-                      ),
+                      
                        QuestionCard(
                         Question: "Does the patient have a cough?",
                         handleQ: (val)=>datamodel.sethasCough(val),
@@ -248,6 +285,20 @@ class Home extends StatelessWidget {
                         qValue: datamodel.pat.gethasHemoptysis(),
                       ),
 
+                      
+                      QuestionCard(
+                      Question: "Does the patient have COPD?",
+                      handleQ: (val)=>datamodel.sethasCopd(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasCopd(),
+                    ),
+
+                        QuestionCard(
+                      Question: "Does the Patient have Asthma?",
+                      handleQ: (val)=>datamodel.sethasAsthma(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasAsthma(),
+                    ),
 
                        QuestionCard(
                         Question: "Does the patient have Shortness of breath?",
@@ -279,6 +330,10 @@ class Home extends StatelessWidget {
                         QuestionFontsize: 20.0,
                         qValue: datamodel.pat.gethasULCrepts(),
                       ),
+
+                      Header(
+                        headerText: 'Circulation',
+                      ),
                        QuestionCard(
                         Question: "Does the patient have any chest pain?",
                         handleQ: (val)=>datamodel.sethasChestPain(val),
@@ -286,13 +341,7 @@ class Home extends StatelessWidget {
                         qValue: datamodel.pat.gethasChestPain(),
                       ),
 
-                        QuestionCard(
-                        Question: "Does the patient have any malignancy?",
-                        handleQ: (val)=>datamodel.sethasMalig(val),
-                        QuestionFontsize: 20.0,
-                        qValue: datamodel.pat.gethasMalig(),
-                      ),
-                      
+                 
                       QuestionCard(
                       Question: "Does the Patient have CHF or IHD?",             
                       handleQ: (val)=>datamodel.sethasHistOfCHFIHD(val),
@@ -309,56 +358,49 @@ class Home extends StatelessWidget {
                       qValue: datamodel.pat.gethasAcuteGiFluidLoss(),
                       ),
 
-                      QuestionCard(
-                      Question: "Does the patient have COPD?",
-                      handleQ: (val)=>datamodel.sethasCopd(val),
-                      QuestionFontsize: 20.0,
-                      qValue: datamodel.pat.gethasCopd(),
-                    ),
-
-                        QuestionCard(
-                      Question: "Does the Patient have Asthma?",
-                      handleQ: (val)=>datamodel.sethasAsthma(val),
-                      QuestionFontsize: 20.0,
-                      qValue: datamodel.pat.gethasAsthma(),
-                    ),
-
+                      Header(
+                        headerText: 'Other Information',
+                      ),
+                       QuestionCard(
+                        Question: "Does the patient have any malignancy?",
+                        handleQ: (val)=>datamodel.sethasMalig(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasMalig(),
+                      ),
+                      
                    
-              QuestionCard(
-               Question: "Does the Patient have H/o DVT or PE?",             
-               handleQ: (val)=>datamodel.sethasHistOfDVTPE(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasHistOfDVTPE(),
-               ),
+                      QuestionCard(
+                      Question: "Does the Patient have H/o DVT or PE?",             
+                      handleQ: (val)=>datamodel.sethasHistOfDVTPE(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasHistOfDVTPE(),
+                      ),
 
-              QuestionCard(
-               Question: "Has the patient has any recent (<1mo) surgery or lower limb fracture?",             
-               handleQ: (val)=>datamodel.sethasHistOfRecentSxOrFrac(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasHistOfRecentSxOrFrac(),
-               ),
+                      QuestionCard(
+                      Question: "Has the patient has any recent (<1mo) surgery or lower limb fracture?",             
+                      handleQ: (val)=>datamodel.sethasHistOfRecentSxOrFrac(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasHistOfRecentSxOrFrac(),
+                      ),
 
-              QuestionCard(
-               Question: "Does the patient have U/L lower limb pain?",             
-               handleQ: (val)=>datamodel.sethasUlLLPain(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasUlLLPain(),
-               ), 
+                      QuestionCard(
+                      Question: "Does the patient have U/L lower limb pain?",             
+                      handleQ: (val)=>datamodel.sethasUlLLPain(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasUlLLPain(),
+                      ), 
 
-               QuestionCard(
-               Question: "Does the patient have pain on pressing the calves?",             
-               handleQ: (val)=>datamodel.sethasCalfTenderness(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasCalfTenderness(),
-               ),
+                      QuestionCard(
+                      Question: "Does the patient have pain on pressing the calves?",             
+                      handleQ: (val)=>datamodel.sethasCalfTenderness(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasCalfTenderness(),
+                      ),
 
-                
-             QuestionCard(
-               Question: "Is the patient Intubated?",             
-               handleQ: (val)=>datamodel.setisIntubated(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.getisIntubated(),
-               ),
+               
+               SizedBox(
+                 height: 70.0,
+               )
 
                   ],
                 ),
@@ -575,24 +617,114 @@ if(cag>11){
 }
 
 
-// class Results extends StatelessWidget {
+// class TResults extends StatelessWidget {
+//   final  _isMale = false;
+//   final _cr = 0.8;
+//   final _isBlack = true;
+//   final _age = 40;
+
+//     //calculate GFR
+//   calcC(){
+    
+//     if(!_isMale){
+//       if(_cr>0.7){
+//         return -1.209;
+//       }else{
+//         return -0.329;
+//       }
+//     }else{
+//       if(_cr>0.9){
+//         return -1.209;
+//       }else{
+//         return -0.411;
+//       }
+//     }
+//   }
+//   getGfr(){
+//     double A  = _isMale?141:144;
+//     double B  = _isMale?0.9:0.7;
+
+//     double C = calcC();
+//     double blackCoef = _isBlack?1.159:1;
+
+//     double val2 = pow(_cr/B,C);
+//     double val3 = pow(0.993,_age);
+  
+//     var result = A*val2*val3*blackCoef;
+//     print(result);
+//     return result;
+//     }
+
 //   @override
 //   Widget build(BuildContext context) {
-//      final datamodel = Provider.of<DataModel>(context);
-//      List a = datamodel.pat.getAbgList();
-//     return Scaffold(
-//       appBar: AppBar(title:Text(this.toString())),
-//       // body: Text('${a.length}'),
-//       // body:Text(datamodel.pat.getAge().toString()),
-//       body: Center(child: Text(datamodel.pat.getAbgList().toString())),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: (){
-//           datamodel.initList();
-//           Navigator.pushNamed(context, '/home');
-//         },
-//       ),
+//     //  final datamodel = Provider.of<DataModel>(context);
+//     //  List a = datamodel.pat.getAbgList();
+//     List a = ['one','two','three'];
+//   //   return ListView.builder(
+//   //             itemCount: a.length,
+//   //             itemBuilder: (context,index){
+//   //               return Card(
+//   //                 child: ListTile(
+//   //                   title: Text('${a[index]}'),
+//   //                 ),
+//   //               );
+//   //             },
+
+//   //           );
+//   // }
+//     return Column(
       
-//     );
+//       children:<Widget>[ 
+//         Card(child: Text('jsahgdjashgjashgd'),),
+//         Expanded(
+//           child: BoostList(
+//           headerText: 'Test',
+//           dataAsList: a,
+            
+//       ),
+//         ),
+//                 Card(child: Text('jsahgdjashgjashgd'),),
+
+//         Expanded(
+//           child: BoostList(
+//           headerText: 'Test',
+//           dataAsList: a,
+            
+//       ),
+//         ),
+
+//         Expanded(
+//           child: BoostList(
+//           headerText: 'Test',
+//           dataAsList: a,
+            
+//       ),
+//         ),
+
+//         Expanded(
+//           child: BoostList(
+//           headerText: 'Test',
+//           dataAsList: a,
+            
+//       ),
+//         ),
+        
+        
+      
+//       ]);
+//     // return Scaffold(
+//     //   appBar: AppBar(title:Text(this.toString())),
+//     //   // body: Text('${a.length}'),
+//     //   body:Center(child: Text(getGfr().toString())),
+//     //   // body: Center(child: Text(datamodel.pat.getAbgList().toString())),
+//     //   floatingActionButton: FloatingActionButton(
+//     //     onPressed: (){
+//     //       // datamodel.initList();
+//     //       Navigator.pushNamed(context, '/home');
+//     //     },
+//     //   ),
+      
+//     // );
 //   }
 // }
 

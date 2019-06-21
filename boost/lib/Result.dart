@@ -1,3 +1,5 @@
+import 'package:boost/components/BoostList.dart';
+import 'package:boost/components/Header.dart';
 import 'package:boost/logic/datamodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -320,23 +322,53 @@ class Results extends StatelessWidget {
     }else{
 
     }
-    
+    var l = outlist.toSet().toList();
+    print(l.toString());
     return outlist;
   }
+
   @override
   Widget build(BuildContext context) {
     final datamodel = Provider.of<DataModel>(context);
 
-    //TODO: implement function to create list of suspected Ds and save to Pat.SuspectedDsList
-    datamodel.setsuspectedDsList(createSuspectedDsList(datamodel));  
-    print(createSuspectedDsList(datamodel).toString());
-  
-  // List a = datamodel.pat.getAbgList();
+
     return Scaffold(
       appBar: AppBar(title:Text(this.toString())),
-      // body: Text('${a.length}'),
-      // body:Text(datamodel.pat.getAge().toString()),
-      body: Center(child: Text(datamodel.pat.getAbgList().toString())),
+
+      body: Column(
+        children: <Widget>[
+          Header(headerText: 'SusPected Infections',),
+          Expanded(
+            child: BoostList(
+              dataAsList: datamodel.pat.getsuspectedInfSourceList(),
+            ),
+          ),
+          Header(headerText: 'SusPected Conditions',),
+          Expanded(
+            child: BoostList(
+              dataAsList: datamodel.pat.getSuspectDsList(),
+            ),
+          ),
+          Header(headerText: 'ABG abnormality',),
+
+          Expanded(
+            child: BoostList(
+             
+              dataAsList:datamodel.pat.getAbgList() ,
+            ),
+          )
+        ],
+      ),
+      // body: Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children:<Widget>[
+      //     Text(datamodel.pat.getGfr().toString()),  
+      //     Text(datamodel.pat.getsuspectedInfSourceList().toString()), 
+      //     Text(datamodel.pat.getSuspectDsList().toString()),    
+      //     Text(datamodel.pat.getAbgList().toString())
+      //   ]),
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           datamodel.initList();

@@ -573,13 +573,14 @@ class PatientDataType{
   getsuspectedDsList()=>suspectedDsList;  
   getsuspectedInfSourceList(){
     suspectedInfSourceList = [];
-    if(hasLRTI()){suspectedInfSourceList.add('LRTI');}
-    if(_hasSTI){suspectedInfSourceList.add('STI');}
-    if(_hasUTIonDipstick){suspectedInfSourceList.add('UTI');}
-    if(_hasSignsOfCNSInfec){suspectedInfSourceList.add('CNSinfection');} 
-    if(_hasRiskOfIe){suspectedInfSourceList.add('IEBacteremia')}
-    if(_hasSignsOfCLABSI){suspectedInfSourceList.add('CLABSI');}
-    if(_hasSignsOfPeritonitis){suspectedInfSourceList.add('Peritonitis');}   
+    
+    if(hasLRTI()!=null){if(hasLRTI()){suspectedInfSourceList.add('LRTI');}}
+    if(_hasSTI != null){if(_hasSTI){suspectedInfSourceList.add('STI');}}
+    if(_hasUTIonDipstick != null){if(_hasUTIonDipstick){suspectedInfSourceList.add('UTI');}}
+    if(_hasSignsOfCNSInfec != null){if(_hasSignsOfCNSInfec){suspectedInfSourceList.add('CNSinfection');}} 
+    if(_hasRiskOfIe != null){if(_hasRiskOfIe){suspectedInfSourceList.add('IEBacteremia');}}
+    if(_hasSignsOfCLABSI != null){if(_hasSignsOfCLABSI){suspectedInfSourceList.add('CLABSI');}}
+    if(_hasSignsOfPeritonitis != null){if(_hasSignsOfPeritonitis){suspectedInfSourceList.add('Peritonitis');}}   
     return suspectedInfSourceList;
   }
 
@@ -589,6 +590,7 @@ class PatientDataType{
 
   getAbgList()=>_abgList;
   setAbgList(List<String> valList)=>_abgList = List.from(_abgList)..addAll(valList);
+  
 
 
  //Calculate Anion Gap
@@ -596,14 +598,15 @@ class PatientDataType{
 
   //calculate GFR
   calcC(){
+    double cr = _cr/76.26;
     if(!_isMale){
-      if(_cr>0.7){
+      if(cr>0.7){
         return -1.209;
       }else{
         return -0.329;
       }
     }else{
-      if(_cr>0.9){
+      if(cr>0.9){
         return -1.209;
       }else{
         return -0.411;
@@ -611,16 +614,18 @@ class PatientDataType{
     }
   }
   getGfr(){
+    double cr = _cr/76.26;
     double A  = _isMale?141:144;
     double B  = _isMale?0.9:0.7;
 
     double C = calcC();
     double blackCoef = _isBlack?1.159:1;
 
-    double val2 = pow(_cr/B,C);
+    double val2 = pow(cr/B,C);
     double val3 = pow(0.993,_age);
   
     var result = A*val2*val3*blackCoef;
+    print(result);
     return result;
     }
 
@@ -810,5 +815,325 @@ bool hasSaturationGap(){
   }else{
     return false;
   }
+}
+
+List getSuspectDsList(){
+    var pt = this;
+    List<String> outlist=[];
+    List abgList = getAbgList();
+    if(abgList.contains('Hagma')){
+        // AlcoholicKetoacidosis
+        if(pt.getGlu()<250 && pt.getHasAlcoholHistory()==true ){
+          outlist.add('AlcoholicKetoacidosis');
+        }
+        // DiabeticKetoAcidosis
+        if(pt.getGlu()>250 && pt.getIsDiabetic()==true){
+          outlist.add('DiabeticKetoAcidosis');
+        }
+
+        // NeurogenicShock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && pt.gethasSpinalInjury()==true){
+          outlist.add('NeurogenicShock');
+        }
+
+        // Anaphylacticshock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && pt.hasAnaphylaxis()==true) {
+          outlist.add('Anaphylacticshock');
+        }
+
+        // Burnshock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && pt.gethasAcuteBurns()==true){
+          outlist.add('Burnshock');
+        }
+        // AdrenalFailureshock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true & pt.hasAdrenalInsuff()){
+          outlist.add('AdrenalFailureshock');
+        }
+
+        // PancreaticShock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true &&   pt.hasPancreatitis() == true){
+          outlist.add('PancreaticShock');
+        }
+        // Septicshock
+        List suspectedInfectionSourceList = pt.getsuspectedInfSourceList();
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==true && suspectedInfectionSourceList.isNotEmpty){
+           outlist.add('Septicshock'); 
+        }
+        // Cardiogencshock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()== false && pt.getisJVPHi()==true && pt.hasChfOrIhdRisk()==true ){
+          outlist.add('Cardiogencshock');
+        }
+        // PneumothoraxShock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==false && pt.getisJVPHi()==true && pt.hasPneumothorax()==true){
+          outlist.add('PneumothoraxShock');
+        }
+        // PericardialTamponadeShock
+        if(pt.hasLowGlobalPerf()==true && pt.hasSIRS()==false && pt.getisJVPHi()==true && pt.hasPeriCardTamponade()==true){
+          outlist.add('PericardialTamponadeShock');
+        }
+        //PulmEmbolism
+        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && pt.getisJVPHi() && pt.hasHighPeRisk()){
+          outlist.add('PulmEmbolism');
+        }
+        //HypovolumicShock
+        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
+          outlist.add('HypovolumicShock');
+        }
+
+        //HemorrhagicShock
+        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteHemorrghe()){
+          outlist.add('HemorrhagicShock');
+        }
+
+        // RenalFailureMetabolicAcidosis
+        if(pt.getGfr()<40 && pt.getAnionGap()>20){
+          outlist.add('RenalFailureMetabolicAcidosis');
+        }  
+
+        // ToxinAlcoholHighAGMetabolicAcidosis
+        if(pt.gethasHistOfToxinAlcholIntake()){
+          outlist.add('ToxinAlcoholHighAGMetabolicAcidosis');
+        }
+
+        //SmallBowelBypassHighAGMetabolicAcidosis
+        if(pt.gethasHistOfSbBypass()){
+          outlist.add('SmallBowelBypassHighAGMetabolicAcidosis');
+
+        }
+        // ChronicParacetMetabolicAcidosis
+        if(pt.gethasHistOfChronParacet()){
+          outlist.add('ChronicParacetMetabolicAcidosis');
+        }
+
+      
+    }
+      if(abgList.contains('Nagma')){
+        // NormalSalineMetabolicAcidosis
+        if(pt.gethasHistOfXsNacl()){
+          outlist.add('NormalSalineMetabolicAcidosis');
+        }
+        // RenalFailureMetabolicAcidosis
+        if(pt.getGfr()<40){
+          outlist.add('RenalFailureMetabolicAcidosis');
+        }
+        // HyperKalemiaMetabolicAcidosis
+        if(pt.getK()>7){
+          outlist.add('HyperKalemiaMetabolicAcidosis');
+        }
+        // RenalTubularAcidosis4
+        if(pt.getK()>5.5 && pt.getK()<6.9){
+          outlist.add('RenalTubularAcidosis4');
+        }
+        // GiGuBaseLossMetabolicAcidosis
+        if(pt.gethasHistOfLaxUrndivOrDiarr()){
+          outlist.add('GiGuBaseLossMetabolicAcidosis');
+        }
+        //RenalTubularAcidosis
+
+        if(!pt.gethasHistOfXsNacl() && pt.getGfr()>40 && pt.getK()<5.5 && !pt.gethasHistOfLaxUrndivOrDiarr()){
+          outlist.add('RenalTubularAcidosis');
+        }
+        
+
+    }
+      if(abgList.contains('RespAlk')){
+
+        // Hypoxemia
+        if(pt.pFRatio()<350){
+          outlist.add('Hypoxemia');
+        }
+        // PulmEmbolism
+        if(pt.hasHighPeRisk()){
+          outlist.add('PulmEmbolism');
+        }
+        // CnsEtiology
+        if(pt.gethasAcuteBrainInjuryOrStroke()){
+          outlist.add('CnsEtiology');
+        }
+
+      
+    }
+      if(abgList.contains('MetabAlk')){
+        // GiLossMetabolicAlkalosis
+        if(pt.gethasLowJvpOrNegBal() && pt.gethasXsVomitNgLoss()){
+          outlist.add('GiLossMetabolicAlkalosis');
+        }  
+
+        // DiuerticUseMetabolicAlkalosis
+        if(pt.gethasLowJvpOrNegBal() && pt.getisTakingDiuretics()){
+          outlist.add('DiuerticUseMetabolicAlkalosis');
+        }
+        
+        // BarterGiltmen 
+        if(pt.gethasLowJvpOrNegBal() && !pt.gethasXsVomitNgLoss() && !pt.getisTakingDiuretics()){
+          outlist.add('BarterGiltmen');
+        }
+        // PrimaryAldosteronism
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('PrimaryAldosteronism');
+        }
+        // SecondaryAldosteronism
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('SecondaryAldosteronism');
+        }
+        // CushingSyndrome
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('CushingSyndrome');
+        }
+        // LiddleSyndrome
+        if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100)){
+            outlist.add('LiddleSyndrome');
+        }
+        // ExogenousLicorice
+         if(!pt.gethasLowJvpOrNegBal() && (pt.getSbp()>160 || pt.getDbp()>100) && pt.getisTakingLicorice()){
+            outlist.add('ExogenousLicorice');
+        }
+        // Hypokalemia
+        if(!pt.gethasLowJvpOrNegBal() && !(pt.getSbp()>160 || pt.getDbp()>100) && pt.getK()<3.5){
+            outlist.add('Hypokalemia');
+        }
+        // MilkAlkaliSyndrome
+        if(!pt.gethasLowJvpOrNegBal() && !(pt.getSbp()>160 || pt.getDbp()>100) && pt.getisTakingCaSuppl()  ){
+            outlist.add('MilkAlkaliSyndrome');
+        }
+
+      
+    }
+      if(abgList.contains('RespAcid')){
+        // DrugInducedRespiratoryAcidosis
+        if(pt.getRr()<10 && pt.gethasHistOfRespDepDrugsIntake()){
+          outlist.add('DrugInducedRespiratoryAcidosis');
+        }
+        // CnsEtiology
+        if(pt.getRr()<10 && !pt.gethasHistOfRespDepDrugsIntake() && pt.gethasAcuteBrainInjuryOrStroke()){
+           outlist.add('CnsEtiology'); 
+        }
+        // SevereLRTI
+        if(pt.pFRatio()<200 && pt.pFRatio()<350 && pt.hasLRTI()){
+          outlist.add('SevereLRTI');
+        }
+        // ModerateLRTI
+        if(pt.pFRatio()<350 && pt.hasLRTI() && pt.pFRatio()>350){
+          outlist.add('ModerateLRTI');
+        }
+        // AcuteLungInjury
+        if(pt.pFRatio()<200){
+          outlist.add('AcuteLungInjury');
+        }
+        // COPD
+        if(pt.gethasCopd() && pt.hasChronicRespiratoryAcidosis()){
+          outlist.add('COPD');
+        }
+        // ObesityHypoventilationSyndrome
+        if(pt.hasChronicRespiratoryAcidosis() && pt.bmi()>30){
+          outlist.add('ObesityHypoventilationSyndrome');
+        }
+        // AcuteAsthma
+        if(!pt.hasChronicRespiratoryAcidosis() && (pt.gethasAsthma()|| pt.gethasRhonchi() )){
+          outlist.add('AcuteAsthma');
+        }
+        // HyperalimentationRespiratoryAcidosis
+        if(!pt.hasChronicRespiratoryAcidosis() && pt.getisTakingTpn()){
+          outlist.add('HyperalimentationRespiratoryAcidosis');
+        }
+        // SeizuresInducedRespiratoryAcidosis
+        if(!pt.hasChronicRespiratoryAcidosis() && pt.gethasHistOfAcuteSeizure()){
+          outlist.add('SeizuresInducedRespiratoryAcidosis');
+        }
+
+
+      
+    }
+      if(abgList.contains('HighAa')){
+
+        // CardiacShunt
+        if(!pt.gethasImpSpoWithO2()){
+          outlist.add('CardiacShunt');
+        }
+        // PulmEmbolism
+        if(pt.gethasImpSpoWithO2() && pt.hasHighPeRisk() ){
+          outlist.add('PulmEmbolism');
+        }
+        // AcuteAsthma
+        if(pt.gethasImpSpoWithO2() && pt.gethasAsthma() ){
+          outlist.add('AcuteAsthma');
+        }
+        // COPD
+        if(pt.gethasImpSpoWithO2() && pt.gethasCopd()){
+          outlist.add('COPD');
+        }
+        
+        // ModerateLRTI
+        if(pt.gethasImpSpoWithO2() && pt.hasLRTI() && pt.pFRatio()>350){
+          outlist.add('ModerateLRTI');
+        }
+
+        // Atelectasis
+        if(pt.gethasImpSpoWithO2() && !pt.hasLRTI()){
+          outlist.add('Atelectasis');
+        }
+        // PulmonaryInfarct
+        if(pt.gethasImpSpoWithO2() && !pt.hasLRTI()){
+          outlist.add('PulmonaryInfarct');
+        }
+        // MucusPlug
+        if(pt.gethasImpSpoWithO2() && !pt.gethasBLBreathSounds()){
+          outlist.add('MucusPlug');
+        }
+
+        // SevereLRTI
+        if(pt.pFRatio()<350 && pt.pFRatio()<200 && pt.gethasImpSpoWithO2() && pt.hasLRTI()){
+          outlist.add('SevereLRTI');
+        }
+        // PleuralEffusion
+        if(pt.gethasImpSpoWithO2() && !pt.gethasBLBreathSounds() ){
+          outlist.add('PleuralEffusion');
+        }
+        // ReExpansionPulmonaryEdema
+        if(pt.gethasImpSpoWithO2() && pt.hasHighRiskOfRexpPulmEdema() ){
+          outlist.add('ReExpansionPulmonaryEdema');
+        }
+
+        // ULIntubation
+        if(pt.gethasImpSpoWithO2() && pt.getisIntubated() && !pt.gethasBLBreathSounds()){
+          outlist.add('ULIntubation');
+        }
+        // PulmomaryEdema
+        if(pt.gethasImpSpoWithO2() && pt.gethasBLCrepts() && pt.gethasHistOfCHFIHD()){
+          outlist.add('PulmomaryEdema');
+        }
+        // AcuteLungInjury
+        if(pt.pFRatio()<200){
+          outlist.add('AcuteLungInjury');
+        }
+     
+      
+    }
+    if(abgList.contains('NormalAa')){
+      // COPD
+      if(pt.getCo2()>45 && pt.gethasCopd()){
+          outlist.add('COPD');
+        }
+      // Hypoventilation
+       if(pt.getCo2()>45 && (pt.getRr()<10|| pt.gethasLowTidalVol()) ){
+          outlist.add('Hypoventilation');
+        }
+      // MethHaemoglobin
+      if(pt.getCo2()<45 && pt.hasSaturationGap() && pt.getSpo()<pt.getSao()){
+        outlist.add('MethHaemoglobin');
+      }
+      // CarboxyHaemoglobin
+       if(pt.getCo2()<45 && pt.hasSaturationGap() && pt.getSpo()>=pt.getSao()){
+        outlist.add('CarboxyHaemoglobin');
+      }
+
+      
+    }else{
+
+    }
+    var l = outlist.toSet().toList();
+    print(l.toString());
+    return l;
+  
 }
 }

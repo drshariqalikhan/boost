@@ -171,9 +171,9 @@ class Hagma extends StatelessWidget {
 
                QuestionCard(
                Question: "Has the patient recently had RadioTherapy?",             
-               handleQ: (val)=>datamodel.sethasPulsusParadoxus(val),
+               handleQ: (val)=>datamodel.sethasRecentRadioTx(val),
                QuestionFontsize: 20.0,
-               qValue: datamodel.pat.gethasPulsusParadoxus(),
+               qValue: datamodel.pat.gethasRecentRadioTx(),
                ),
 
               QuestionCard(
