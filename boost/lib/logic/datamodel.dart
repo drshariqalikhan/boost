@@ -817,6 +817,12 @@ bool hasSaturationGap(){
   }
 }
 
+//Risk of Stroke
+bool hasHighRiskofStroke(){
+  // TODO:
+  return false;
+}
+
 List getSuspectDsList(){
     var pt = this;
     List<String> outlist=[];
