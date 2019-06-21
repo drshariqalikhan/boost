@@ -357,7 +357,16 @@ class Home extends StatelessWidget {
                       QuestionFontsize: 20.0,
                       qValue: datamodel.pat.gethasAcuteGiFluidLoss(),
                       ),
-
+                       Header(
+                        headerText: 'Neurology',
+                      ),
+                       QuestionCard(
+                        Question: "Has the patient developed an altered mental state in recently?",
+                        handleQ: null,//(val)=>datamodel.sethasMalig(val),
+                        QuestionFontsize: 20.0,
+                        qValue: null//datamodel.pat.gethasMalig(),
+                      ),
+                      
                       Header(
                         headerText: 'Other Information',
                       ),
