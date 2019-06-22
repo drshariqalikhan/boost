@@ -24,12 +24,7 @@ class Hagma extends StatelessWidget {
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.getHasAlcoholHistory(),
              ),
-             QuestionCard(
-               Question: "Is the patient a Diabetic?",
-               handleQ: (val)=>datamodel.setIsDiabetic(val),
-               QuestionFontsize: 20.0,
-               qValue: datamodel.pat.getIsDiabetic(),
-             ),
+            
              QuestionCard(
                Question: "Is the patient on pressors or Inotropes",
                handleQ: (val)=>datamodel.sethasPressorSupport(val),

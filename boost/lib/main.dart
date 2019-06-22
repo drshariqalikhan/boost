@@ -361,15 +361,36 @@ class Home extends StatelessWidget {
                         headerText: 'Neurology',
                       ),
                        QuestionCard(
-                        Question: "Has the patient developed an altered mental state in recently?",
-                        handleQ: null,//(val)=>datamodel.sethasMalig(val),
+                        Question: "Has the patient developed Limb Weakess or Facial Droop recently?",
+                        handleQ: (val)=>datamodel.sethasFaceDroopOrLimbWeakness(val),
                         QuestionFontsize: 20.0,
-                        qValue: null//datamodel.pat.gethasMalig(),
+                        qValue: datamodel.pat.gethasFaceDroopOrLimbWeakness(),
                       ),
+                        
+                      QuestionCard(
+                        Question: "Has the patient developed Altered mentation or confusion recently?",
+                        handleQ: (val)=>datamodel.sethasAlteredMentation(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasAlteredMentation(),
+                      ),
+                        QuestionCard(
+                        Question: "Has the patient developed Diffculty in talking recently?",
+                        handleQ: (val)=>datamodel.sethasNewAphasia(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasNewAphasia(),
+                      ),
+
                       
                       Header(
                         headerText: 'Other Information',
                       ),
+
+                      QuestionCard(
+                          Question: "Is the patient a Diabetic?",
+                          handleQ: (val)=>datamodel.setIsDiabetic(val),
+                          QuestionFontsize: 20.0,
+                          qValue: datamodel.pat.getIsDiabetic(),
+                        ),
                        QuestionCard(
                         Question: "Does the patient have any malignancy?",
                         handleQ: (val)=>datamodel.sethasMalig(val),

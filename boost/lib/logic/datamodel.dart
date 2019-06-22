@@ -331,6 +331,20 @@ class DataModel with ChangeNotifier{
     notifyListeners();
   }
 
+  sethasFaceDroopOrLimbWeakness(bool val){
+    pat._hasFaceDroopOrLimbWeakness = val;
+    notifyListeners();
+  }
+
+  sethasNewAphasia(bool val){
+    pat._hasNewAphasia = val;
+    notifyListeners();
+  }
+
+  sethasAlteredMentation(bool val){
+    pat._hasAlteredMentation = val;
+    notifyListeners();
+  }
 
   setsuspectedDsList(List mylist){
     pat.suspectedDsList = mylist;
@@ -416,7 +430,10 @@ class PatientDataType{
   _hasHadLargePleuralDrainage,
   _hasLungCollapseFor3d,
   _hasLowTidalVol,
-  _isIntubated;
+  _isIntubated,
+  _hasFaceDroopOrLimbWeakness,
+  _hasNewAphasia,
+  _hasAlteredMentation;
 
 
   
@@ -569,6 +586,9 @@ class PatientDataType{
   gethasLowTidalVol()=>_hasLowTidalVol;
   getisIntubated()=>_isIntubated;
 
+  gethasFaceDroopOrLimbWeakness()=>_hasFaceDroopOrLimbWeakness;
+  gethasNewAphasia()=>_hasNewAphasia;
+  gethasAlteredMentation()=>_hasAlteredMentation;
 
   getsuspectedDsList()=>suspectedDsList;  
   getsuspectedInfSourceList(){
@@ -818,9 +838,21 @@ bool hasSaturationGap(){
 }
 
 //Risk of Stroke
-bool hasHighRiskofStroke(){
-  // TODO:
-  return false;
+bool hasHighLikelyhoodofStroke(){
+
+  int count = 0;
+  if(_sbp>140){count=count+1;}
+  if(_age>=60){count = count +1;}
+  if(_isDiabetic){count = count+ 1;}
+  if(_hasFaceDroopOrLimbWeakness) {count= count+4;}
+  if(_hasNewAphasia){count = count + 2;}
+  if(_hasAlteredMentation){count = count +1;}
+
+  if(count>=4){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 List getSuspectDsList(){
