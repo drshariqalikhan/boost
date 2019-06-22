@@ -159,7 +159,7 @@ class Home extends StatelessWidget {
                        ListTile(
                         leading: CircleAvatar(child: Text('Ht'),),
                         title:TextField(
-                            decoration: new InputDecoration.collapsed(hintText: 'Ht'),
+                            decoration: new InputDecoration.collapsed(hintText: 'Ht(in meters)'),
                             onChanged: (v)=>datamodel.pat.setHt(double.tryParse(v)),
                             ),   
                       ),

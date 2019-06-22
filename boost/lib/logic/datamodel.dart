@@ -808,7 +808,7 @@ double pFRatio()=>_pao/_fio;
 
 //Chr Resp Acid
 bool hasChronicRespiratoryAcidosis(){
-  if(_bi>26){
+  if(_bi>24){
     return true;
   }else{
     return false;
@@ -914,7 +914,10 @@ List getSuspectDsList(){
           outlist.add('PulmEmbolism');
         }
         //HypovolumicShock
-        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
+        // if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
+        //   outlist.add('HypovolumicShock');
+        // }
+          if(pt.hasLowGlobalPerf() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
           outlist.add('HypovolumicShock');
         }
 
@@ -985,7 +988,10 @@ List getSuspectDsList(){
           outlist.add('PulmEmbolism');
         }
         // CnsEtiology
-        if(pt.gethasAcuteBrainInjuryOrStroke()){
+        // if(pt.gethasAcuteBrainInjuryOrStroke()){
+        //   outlist.add('CnsEtiology');
+        // }
+        if(pt.hasHighLikelyhoodofStroke() || pt.gethasAcuteBrainInjuryOrStroke()){
           outlist.add('CnsEtiology');
         }
 
@@ -1043,7 +1049,10 @@ List getSuspectDsList(){
           outlist.add('DrugInducedRespiratoryAcidosis');
         }
         // CnsEtiology
-        if(pt.getRr()<10 && !pt.gethasHistOfRespDepDrugsIntake() && pt.gethasAcuteBrainInjuryOrStroke()){
+        // if(pt.getRr()<10 && !pt.gethasHistOfRespDepDrugsIntake() && pt.gethasAcuteBrainInjuryOrStroke()){
+        //    outlist.add('CnsEtiology'); 
+        // }
+        if(pt.getRr()<10 && !pt.gethasHistOfRespDepDrugsIntake() && (pt.hasHighLikelyhoodofStroke() || pt._hasAcuteBrainInjuryOrStroke)){
            outlist.add('CnsEtiology'); 
         }
         // SevereLRTI
