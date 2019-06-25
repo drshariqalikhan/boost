@@ -52,7 +52,9 @@ class MetabAlk extends StatelessWidget {
                QuestionFontsize: 20.0,
                qValue: datamodel.pat.getisTakingCaSuppl(),
              ),
-
+            SizedBox(
+              height: 80.0,
+            )
 
 
 

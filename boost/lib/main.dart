@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ),
         home: Home(),
         // home: Nagma(),
-        // home: TResults(),
+        // home: Results(),
         debugShowCheckedModeBanner: false,
       
           

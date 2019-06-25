@@ -25,6 +25,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   provider: ^2.0.1
   auto_size_text: ^0.2.0
+  path_provider:
+  csv: ^4.0.3
+  http:
   
 dev_dependencies:
   flutter_test:
