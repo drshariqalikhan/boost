@@ -9,16 +9,6 @@ class CsvObject{
 
   CsvObject({this.fileName});
 
-  makeBaseCsv()async{
-    final directory = await getApplicationDocumentsDirectory();
-    File logFile = File('${directory.path}/${this.fileName}.csv');
-    var sink = logFile.openWrite(mode: FileMode.append);
-    var header = "Name,Age,Gender,PostCode\n";
-    sink.write(header);
-    await sink.flush();
-    await sink.close();
-  }
-
   doesCsvFileExist()async{
     final directory = await getApplicationDocumentsDirectory();
     File logFile = File('${directory.path}/${this.fileName}.csv');
