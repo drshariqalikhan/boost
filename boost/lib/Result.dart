@@ -327,17 +327,17 @@ class Results extends StatelessWidget {
                   hasAcuteGiFluidLoss:  datamodel.pat.gethasAcuteGiFluidLoss(),
                   hasAcuteHemorrghe:  datamodel.pat.gethasAcuteHemorrghe(),
                   hasAcuteOnsetOfSymptoms:  datamodel.pat.gethasAcuteOnsetOfSymptoms(),
-                  hasAdrenalInsuff:  datamodel.pat.hasAdrenalInsuff(),
+                  hasAdrenalInsuff:  datamodel.pat.hasAdrenalInsuff(),//..........................................
                   hasAlcoholHistory:  datamodel.pat.getHasAlcoholHistory(),
                   hasAlteredMentation:  datamodel.pat.gethasAlteredMentation(),
-                  hasAnaphylaxis:  datamodel.pat.hasAnaphylaxis(),
+                  hasAnaphylaxis:  datamodel.pat.hasAnaphylaxis(),//.............................................
                   hasAsthma:  datamodel.pat.gethasAsthma(),
                   hasBLBreathSounds:  datamodel.pat.gethasBLBreathSounds(),
                   hasBLCrepts:  datamodel.pat.gethasBLCrepts(),
                   hasCalfTenderness: datamodel.pat.gethasCalfTenderness(),
                   hasChestPain: datamodel.pat.gethasChestPain(),
-                  hasChfOrIhdRisk: datamodel.pat.hasChfOrIhdRisk(),
-                  hasChronicRespiratoryAcidosis: datamodel.pat.hasChronicRespiratoryAcidosis(),
+                  hasChfOrIhdRisk: datamodel.pat.hasChfOrIhdRisk(),//............................................
+                  hasChronicRespiratoryAcidosis: datamodel.pat.hasChronicRespiratoryAcidosis(),//...............
                   hasCopd: datamodel.pat.gethasCopd(),
                   hasCough: datamodel.pat.gethasCough(),
                   hasDyspnoea: datamodel.pat.gethasDyspnoea(),
@@ -345,9 +345,9 @@ class Results extends StatelessWidget {
                   hasGallStoneOrPancSx: datamodel.pat.gethasGallStoneOrPancSx(),
                   hasHadLargePleuralDrainage: datamodel.pat.gethasHadLargePleuralDrainage(),
                   hasHemoptysis: datamodel.pat.gethasHemoptysis(),
-                  hasHighLikelyhoodofStroke: datamodel.pat.hasHighLikelyhoodofStroke(),
-                  hasHighPeRisk: datamodel.pat.hasHighPeRisk(),
-                  hasHighRiskOfRexpPulmEdema: datamodel.pat.hasHighRiskOfRexpPulmEdema(),
+                  hasHighLikelyhoodofStroke: datamodel.pat.hasHighLikelyhoodofStroke(),//.......................
+                  hasHighPeRisk: datamodel.pat.hasHighPeRisk(),//...............................................
+                  hasHighRiskOfRexpPulmEdema: datamodel.pat.hasHighRiskOfRexpPulmEdema(),//.....................
                   hasHistOfAcuteSeizure: datamodel.pat.gethasHistOfAcuteSeizure(),
                   hasHistOfCHFIHD: datamodel.pat.gethasHistOfCHFIHD(),
                   hasHistOfChronParacet: datamodel.pat.gethasHistOfChronParacet(),
@@ -360,29 +360,29 @@ class Results extends StatelessWidget {
                   hasHistOfToxinAlcholIntake: datamodel.pat.gethasHistOfToxinAlcholIntake(),
                   hasHistOfXsNacl: datamodel.pat.gethasHistOfXsNacl(),
                   hasImpSpoWithO2: datamodel.pat.gethasImpSpoWithO2(),
-                  hasLowGlobalPerf: datamodel.pat.hasLowGlobalPerf(),
+                  hasLowGlobalPerf: datamodel.pat.hasLowGlobalPerf(),//.........................................
                   hasLowJvpOrNegBal: datamodel.pat.gethasLowJvpOrNegBal(),
                   hasLowTidalVol: datamodel.pat.gethasLowTidalVol(),
-                  hasLRTI: datamodel.pat.hasLRTI(),
+                  hasLRTI: datamodel.pat.hasLRTI(),//...........................................................
                   hasLungCollapseFor3d: datamodel.pat.gethasLungCollapseFor3d(),
                   hasMalig: datamodel.pat.gethasMalig(),
                   hasNewAphasia: datamodel.pat.gethasNewAphasia(),
-                  hasPancreatitis: datamodel.pat.hasPancreatitis(),
-                  hasPeriCardTamponade: datamodel.pat.hasPeriCardTamponade(),
+                  hasPancreatitis: datamodel.pat.hasPancreatitis(),//...........................................
+                  hasPeriCardTamponade: datamodel.pat.hasPeriCardTamponade(),//................................
                   hasPitPathology: datamodel.pat.gethasPitPathology(),
-                  hasPneumothorax: datamodel.pat.hasPneumothorax(),
+                  hasPneumothorax: datamodel.pat.hasPneumothorax(),//...........................................
                   hasPressorSupport: datamodel.pat.gethasPressorSupport(),
                   hasPrimarySignsOfAllergicRxn: datamodel.pat.gethasPrimarySignsOfAllergicRxn(),
                   hasPulsusParadoxus: datamodel.pat.gethasPulsusParadoxus(),
                   hasRecentRadioTx: datamodel.pat.gethasRecentRadioTx(),
                   hasRhonchi: datamodel.pat.gethasRhonchi(),
                   hasRiskOfIe: datamodel.pat.gethasRiskOfIe(),
-                  hasSaturationGap: datamodel.pat.hasSaturationGap(),
+                  hasSaturationGap: datamodel.pat.hasSaturationGap(),//...........................................
                   hasSharpOrBluntChestTrauma: datamodel.pat.gethasSharpOrBluntChestTrauma(),
                   hasSignsOfCLABSI: datamodel.pat.gethasSignsOfCLABSI(),
                   hasSignsOfCNSInfec: datamodel.pat.gethasSignsOfCNSInfec(),
                   hasSignsOfPeritonitis: datamodel.pat.gethasSignsOfPeritonitis(),
-                  hasSIRS: datamodel.pat.hasSIRS(),
+                  hasSIRS: datamodel.pat.hasSIRS(),//..........................................................
                   hasSkinPigmentPatch: datamodel.pat.gethasSkinPigmentPatch(),
                   hasSpinalInjury: datamodel.pat.gethasSpinalInjury(),
                   hasSTI: datamodel.pat.gethasSTI(),
@@ -406,7 +406,7 @@ class Results extends StatelessWidget {
                   k: datamodel.pat.getK(),
                   na: datamodel.pat.getNa(),
                   pao: datamodel.pat.getPao(),
-                  pFRatio: datamodel.pat.pFRatio(),
+                  pFRatio: datamodel.pat.pFRatio(),//....................................................
                   ph: datamodel.pat.getPh(),
                   rr: datamodel.pat.getRr(),
                   sao: datamodel.pat.getSao(),

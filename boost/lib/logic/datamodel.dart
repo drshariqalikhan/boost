@@ -651,10 +651,13 @@ class PatientDataType{
 
 //Global perf
 bool hasLowGlobalPerf(){
+  if(gethasPressorSupport!=null){
   if(_sbp<95 || gethasPressorSupport()==true){
     return true;
   }else{
     return false;
+  }}else{
+    return null;
   }
 }
 
@@ -678,6 +681,8 @@ bool hasSIRS(){
 //Anaphylaxis
 bool hasAnaphylaxis(){
   int count = 0;
+  if(_hasAcuteOnsetOfSymptoms!=null && _hasPrimarySignsOfAllergicRxn!=null && _hasDyspnoea!=null && _hasRhonchi!=null)
+  {
   if(_hasAcuteOnsetOfSymptoms){count++;}
   if(_hasPrimarySignsOfAllergicRxn){count++;}
   if(_hasDyspnoea || _hasRhonchi){count++;}
@@ -686,6 +691,8 @@ bool hasAnaphylaxis(){
     return true;
   }else{
     return false;
+  }}else{
+    return null;
   }
 }
 
@@ -709,21 +716,27 @@ bool hasLRTI(){
 //Adrenal insuff
 bool hasAdrenalInsuff(){
   double count = 0;
+  if(_isTakingSteroids !=null && _hasPitPathology!=null && _hasSkinPigmentPatch!=null && _hasAbdominalPain!=null){
   if(_isTakingSteroids){count = count+1.1;}
   if(_hasPitPathology){count = count +1.1;}
   if(_hasSkinPigmentPatch){count = count +1;}
   if(_hasAbdominalPain){count = count +0.5;}
-
   if(count >1){
     return true;
   }else{
     return false;
   }
+  }
+  else{
+    return null;
+  }
+  
 }
 
 //Pancreatitis
 bool hasPancreatitis(){
   int count = 0;
+  if(_hasGallStoneOrPancSx!=null && _hasAlcoholHistory!=null && _hasAbdominalTrauma!=null){
   if(_hasGallStoneOrPancSx){count++;}
   if(_hasAlcoholHistory){count++;}
   if(_hasAbdominalTrauma){count++;}
@@ -732,12 +745,15 @@ bool hasPancreatitis(){
     return true;
   }else{
     return false;
+  }}else{
+    return null;
   }
 
 }
 //CHF IHD risk
 bool hasChfOrIhdRisk(){
   int count = 0;
+  if(_hasHistOfCHFIHD!=null && _hasChestPain!=null && _hasDyspnoea!=null && _hasBLCrepts!=null){
   if(_hasHistOfCHFIHD){count++;}
   if(_hasChestPain){count++;}
   if(_hasDyspnoea){count++;}
@@ -747,12 +763,15 @@ bool hasChfOrIhdRisk(){
     return true;
   }else{
     return false;
+  }}else{
+    return null;
   }
 }
 
 //Pnuemothx
 bool hasPneumothorax(){
   int count = 0;
+  if(_hasChestPain!=null && _hasDyspnoea!=null && _hasSharpOrBluntChestTrauma!=null && _hasBLBreathSounds!=null){
   if(_hasChestPain){count++;}
   if(_hasDyspnoea){count++;}
   if(_hasSharpOrBluntChestTrauma){count++;}
@@ -762,6 +781,8 @@ bool hasPneumothorax(){
     return true;
   }else{
     return false;
+  }}else{
+    return null;
   }
 }
 //Pericard Tamponade
@@ -819,10 +840,13 @@ double bmi()=>_wt/(_ht*_ht);
 
 //Exp Plum Ed
 bool hasHighRiskOfRexpPulmEdema(){
+  if(_hasHadLargePleuralDrainage!=null && _hasLungCollapseFor3d!=null){
   if(_hasHadLargePleuralDrainage || _hasLungCollapseFor3d){
     return true;
   }else{
     return false;
+  }}else{
+    return null;
   }
 }
 

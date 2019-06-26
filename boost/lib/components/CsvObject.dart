@@ -129,7 +129,7 @@ class CsvObject{
     '$hasCopd,$hasAsthma,$isTakingTpn,$hasHistOfAcuteSeizure,$hasImpSpoWithO2,$hasHadLargePleuralDrainage,$hasLungCollapseFor3d,$hasLowTidalVol,$isIntubated,'+
     '$hasFaceDroopOrLimbWeakness,$hasNewAphasia,$hasAlteredMentation,$anionGap,$gfr,$hasLowGlobalPerf,'+
     '$hasSIRS,$hasAnaphylaxis,$hasLRTI,$hasAdrenalInsuff,$hasPancreatitis,$hasChfOrIhdRisk,$hasPneumothorax,$hasPeriCardTamponade,$hasHighPeRisk,$pFRatio,'+
-    '$hasChronicRespiratoryAcidosis,$hasHighRiskOfRexpPulmEdema,$hasSaturationGap,$hasHighLikelyhoodofStroke,$suspectedDsList,$suspectedInfSourceList,$abgList,$comments\n';
+    '$hasChronicRespiratoryAcidosis,$hasHighRiskOfRexpPulmEdema,$hasSaturationGap,$hasHighLikelyhoodofStroke,,$comments,$suspectedDsList,$suspectedInfSourceList,$abgList\n';
     sink.write(row);
     await sink.flush();
     await sink.close();
