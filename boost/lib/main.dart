@@ -427,6 +427,27 @@ class Home extends StatelessWidget {
                       qValue: datamodel.pat.gethasCalfTenderness(),
                       ),
 
+                         QuestionCard(
+                        Question: "Is there a iv cannula with two or more of the following redness,pain or discharge?",
+                        handleQ: (val)=>datamodel.sethasSignsOfCLABSI(val),
+                        QuestionFontsize: 20.0,
+                        qValue: datamodel.pat.gethasSignsOfCLABSI(),
+                        ),
+
+                           QuestionCard(
+                      Question: "Does the urine diptick show Nitrite positive and Luekocyte positive?",
+                      handleQ: (val)=>datamodel.sethasUTIonDipstick(val),
+                      QuestionFontsize: 20.0,
+                      qValue: datamodel.pat.gethasUTIonDipstick(),
+                    ),
+
+                            QuestionCard(
+                    Question: "Does the patient have an skin abcess,skin/wound infection,ischemic limb/digits?",
+                    handleQ: (val)=>datamodel.sethasSTI(val),
+                    QuestionFontsize: 20.0,
+                    qValue: datamodel.pat.gethasSTI(),
+                  ),
+
                
                SizedBox(
                  height: 70.0,
