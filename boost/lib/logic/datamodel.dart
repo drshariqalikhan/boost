@@ -938,17 +938,17 @@ List getSuspectDsList(){
           outlist.add('PulmEmbolism');
         }
         //HypovolumicShock
-        // if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
-        //   outlist.add('HypovolumicShock');
-        // }
-          if(pt.hasLowGlobalPerf() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
+        if(pt.hasLowGlobalPerf() && !pt.getisJVPHi()){
           outlist.add('HypovolumicShock');
         }
+        //   if(pt.hasLowGlobalPerf() && !pt.getisJVPHi() && pt.gethasAcuteGiFluidLoss() ){
+        //   outlist.add('HypovolumicShock');
+        // }
 
-        //HemorrhagicShock
-        if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteHemorrghe()){
-          outlist.add('HemorrhagicShock');
-        }
+        // //HemorrhagicShock
+        // if(pt.hasLowGlobalPerf() && !pt.hasSIRS() && !pt.getisJVPHi() && pt.gethasAcuteHemorrghe()){
+        //   outlist.add('HemorrhagicShock');
+        // }
 
         // RenalFailureMetabolicAcidosis
         if(pt.getGfr()<40 && pt.getAnionGap()>20){
